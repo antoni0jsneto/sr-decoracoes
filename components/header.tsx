@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { Menu, X, Phone, ChevronDown } from "lucide-react"
+import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 
 interface SubItem {
-  label: string
-  href: string
+  label: string;
+  href: string;
 }
 
 interface NavItem {
-  label: string
-  href?: string
-  children?: SubItem[]
+  label: string;
+  href?: string;
+  children?: SubItem[];
 }
 
 const navItems: NavItem[] = [
@@ -35,30 +35,32 @@ const navItems: NavItem[] = [
   },
   { label: "Instalação de Pisos", href: "/servicos/instalacao-pisos" },
   { label: "Redes de Proteção", href: "/servicos/redes-de-protecao" },
-]
+];
 
 export function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
-  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null)
-  const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(
+    null
+  );
+  const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function handleMouseEnter(label: string) {
-    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current)
-    setOpenDropdown(label)
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+    setOpenDropdown(label);
   }
 
   function handleMouseLeave() {
     dropdownTimeout.current = setTimeout(() => {
-      setOpenDropdown(null)
-    }, 150)
+      setOpenDropdown(null);
+    }, 150);
   }
 
   useEffect(() => {
     return () => {
-      if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current)
-    }
-  }, [])
+      if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-md">
@@ -72,9 +74,9 @@ export function Header() {
             className="h-10 w-10 rounded-full lg:h-12 lg:w-12"
             priority
           />
-          <div className="flex flex-col p-0">
-            <span className="text-lg font-bold">SR</span>
-            <span className="text-xs uppercase tracking-widest">
+          <div className="flex flex-col gap-0 p-0">
+            <span className="text-lg font-bold leading-none">SR</span>
+            <span className="text-xs uppercase tracking-widest leading-tight">
               Decorações
             </span>
           </div>
@@ -95,7 +97,11 @@ export function Header() {
                   className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
                 >
                   {item.label}
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform ${openDropdown === item.label ? "rotate-180" : ""}`} />
+                  <ChevronDown
+                    className={`h-3.5 w-3.5 transition-transform ${
+                      openDropdown === item.label ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
                 {openDropdown === item.label && (
                   <div className="absolute left-0 top-full z-50 min-w-[200px] rounded-lg border border-border bg-card py-2 shadow-xl">
@@ -153,7 +159,10 @@ export function Header() {
           <nav className="flex flex-col px-4 py-4">
             {navItems.map((item) =>
               item.children ? (
-                <div key={item.label} className="border-b border-border last:border-0">
+                <div
+                  key={item.label}
+                  className="border-b border-border last:border-0"
+                >
                   <button
                     type="button"
                     onClick={() =>
@@ -165,8 +174,9 @@ export function Header() {
                   >
                     {item.label}
                     <ChevronDown
-                      className={`h-4 w-4 text-muted-foreground transition-transform ${openMobileDropdown === item.label ? "rotate-180" : ""
-                        }`}
+                      className={`h-4 w-4 text-muted-foreground transition-transform ${
+                        openMobileDropdown === item.label ? "rotate-180" : ""
+                      }`}
                     />
                   </button>
                   {openMobileDropdown === item.label && (
@@ -210,5 +220,5 @@ export function Header() {
         </div>
       )}
     </header>
-  )
+  );
 }
