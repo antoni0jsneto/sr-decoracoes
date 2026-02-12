@@ -1,47 +1,35 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import { ServicePageLayout } from "@/components/service-page-layout"
+import { getServiceMetadata, serviceSchema } from "@/lib/seo"
+import { Breadcrumbs, BreadcrumbSchema } from "@/components/breadcrumbs"
 
-export const metadata: Metadata = {
-  title:
-    "Lavagem de Persianas e Cortinas em São Paulo | SR Decorações",
+export const metadata: Metadata = getServiceMetadata("lavagem-persianas-cortinas")
+
+const jsonLd = serviceSchema("lavagem-persianas-cortinas", {
+  title: "Lavagem de Persianas e Cortinas | SR Decorações",
   description:
-    "Lavagem profissional de persianas e cortinas. Eliminamos ácaros, bactérias e mau cheiro. Orçamento grátis via WhatsApp. Atendemos toda Grande São Paulo.",
+    "Lavagem profissional de persianas e cortinas em São Paulo. Eliminamos ácaros, bactérias e mau cheiro com técnicas especializadas. Orçamento grátis via WhatsApp!",
+  shortDescription:
+    "Higienização profissional que elimina ácaros, bactérias e mau cheiro. Suas persianas e cortinas novas de novo!",
   keywords: [
     "lavagem de persianas",
     "lavagem de cortinas",
     "limpeza de persianas",
-    "higienização de persianas",
     "limpeza de cortinas",
+    "higienização de persianas",
     "lavagem de persianas são paulo",
-    "limpeza de persianas sp",
+    "lavagem de cortinas são paulo",
+    "persianas limpas",
+    "remoção de ácaros",
+    "higienização profissional",
   ],
-  openGraph: {
-    title: "Lavagem de Persianas e Cortinas | SR Decorações",
-    description:
-      "Lavagem profissional de persianas e cortinas. Eliminamos ácaros, bactérias e mau cheiro. Orçamento grátis!",
-    type: "website",
-    locale: "pt_BR",
-  },
-}
+  serviceType: "Lavagem de Persianas e Cortinas",
+})
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Lavagem de Persianas e Cortinas",
-  provider: {
-    "@type": "LocalBusiness",
-    name: "SR Decorações",
-    telephone: "+5511924240055",
-    email: "srdecoracoess@gmail.com",
-    areaServed: "São Paulo",
-  },
-  description:
-    "Lavagem profissional de persianas e cortinas com produtos certificados. Eliminamos ácaros, bactérias, fungos e mau cheiro.",
-  areaServed: {
-    "@type": "City",
-    name: "São Paulo",
-  },
-}
+const breadcrumbSchema = BreadcrumbSchema({
+  items: [{ label: "Serviços", href: "/#servicos" }, { label: "Lavagem de Persianas e Cortinas" }],
+})
 
 const benefits = [
   "Eliminação de ácaros, bactérias, germes e fungos prejudiciais à saúde",
@@ -83,16 +71,26 @@ const details = [
 
 export default function LavagemPersianasPage() {
   return (
-    <ServicePageLayout
-      title="Lavagem de Persianas e Cortinas"
-      subtitle="Serviço Principal"
-      description="Suas persianas e cortinas novas de novo! Nossa lavagem profissional elimina ácaros, bactérias, fungos e mau cheiro, devolvendo a beleza e protegendo a saúde da sua família."
-      heroImage="/images/lavagem-persianas.jpg"
-      heroImageAlt="Lavagem profissional de persianas e cortinas"
-      benefits={benefits}
-      details={details}
-      whatsappMessage="Olá! Gostaria de solicitar um orçamento para lavagem de persianas e cortinas."
-      jsonLd={jsonLd}
-    />
+    <>
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Breadcrumbs
+        items={[{ label: "Serviços", href: "/#servicos" }, { label: "Lavagem de Persianas e Cortinas" }]}
+      />
+      <ServicePageLayout
+        title="Lavagem de Persianas e Cortinas"
+        subtitle="Serviço Principal"
+        description="Suas persianas e cortinas novas de novo! Nossa lavagem profissional elimina ácaros, bactérias, fungos e mau cheiro, devolvendo a beleza e protegendo a saúde da sua família."
+        heroImage="/images/lavagem-persianas.jpg"
+        heroImageAlt="Lavagem profissional de persianas e cortinas com técnicas especializadas"
+        benefits={benefits}
+        details={details}
+        whatsappMessage="Olá! Gostaria de solicitar um orçamento para lavagem de persianas e cortinas."
+        jsonLd={jsonLd}
+      />
+    </>
   )
 }

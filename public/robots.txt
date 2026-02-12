@@ -1,0 +1,30 @@
+# Robots.txt para SR Decorações
+# https://sr-decoracoes.com.br
+
+# Permite acesso de todos os crawlers
+User-agent: *
+Allow: /
+Allow: /servicos/
+Allow: /images/
+
+# Disallow arquivos/pastas que não queremos indexar
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*?*
+
+# Google específico
+User-agent: Googlebot
+Allow: /
+Allow: /servicos/
+Crawl-delay: 1
+
+# Bing específico
+User-agent: Bingbot
+Allow: /
+Allow: /servicos/
+Crawl-delay: 2
+
+# Sitemap
+Sitemap: https://sr-decoracoes.com.br/sitemap.xml
+Sitemap: https://sr-decoracoes.com.br/sitemap-services.xml
