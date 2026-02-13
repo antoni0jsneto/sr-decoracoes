@@ -1,6 +1,6 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Mail, Phone, MapPin } from "lucide-react"
+import Link from "next/link";
+import Image from "next/image";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -9,24 +9,26 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <Image
-                src="/images/logo-sr-decoracoes.avif"
-                alt="SR Decorações"
-                width={56}
-                height={56}
-                className="h-14 w-14 rounded-full"
-              />
+              <div className="h-14 w-14 rounded-full bg-white shadow-md flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/images/icone-logo.svg"
+                  alt="SR Decorações"
+                  width={40}
+                  height={40}
+                />
+              </div>
+
               <div className="flex flex-col leading-none">
-                <span className="text-2xl font-bold text-primary-foreground">SR</span>
-                <span className="text-xs font-semibold uppercase tracking-widest text-primary-foreground/70">
-                  Decorações
+                <span className="text-xs font-bold uppercase tracking-widest text-primary-foreground/90">
+                  Persianas & <br /> Decorações
                 </span>
               </div>
             </div>
+
             <p className="leading-relaxed text-primary-foreground/70">
               Especialistas em lavagem, manutenção e venda de persianas e
-              cortinas. Também realizamos lavagem e reforma de sofás,
-              instalação de carpete e paviflex, e redes de proteção.
+              cortinas. Também realizamos lavagem e reforma de sofás, instalação
+              de carpete e paviflex, e redes de proteção.
             </p>
           </div>
 
@@ -135,5 +137,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

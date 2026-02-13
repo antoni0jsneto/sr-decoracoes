@@ -41,7 +41,7 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(
-    null
+    null,
   );
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -67,7 +67,7 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
           <Image
-            src="/images/logo-sr-decoracoes.avif"
+            src="/images/icone-logo.png"
             alt="SR Decorações"
             width={48}
             height={48}
@@ -75,9 +75,8 @@ export function Header() {
             priority
           />
           <div className="flex flex-col gap-0 p-0">
-            <span className="text-lg font-bold leading-none">SR</span>
-            <span className="text-xs uppercase tracking-widest leading-tight">
-              Decorações
+            <span className="text-sm font-bold leading-none uppercase tracking-widest text-[#043761]">
+              PERSIANAS & DECORAÇÕES
             </span>
           </div>
         </Link>
@@ -125,7 +124,7 @@ export function Header() {
               >
                 {item.label}
               </Link>
-            )
+            ),
           )}
         </nav>
 
@@ -167,7 +166,7 @@ export function Header() {
                     type="button"
                     onClick={() =>
                       setOpenMobileDropdown(
-                        openMobileDropdown === item.label ? null : item.label
+                        openMobileDropdown === item.label ? null : item.label,
                       )
                     }
                     className="flex w-full items-center justify-between py-3 text-sm font-medium text-foreground"
@@ -203,7 +202,7 @@ export function Header() {
                 >
                   {item.label}
                 </Link>
-              )
+              ),
             )}
             <a
               href="https://wa.me/5511924240055?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento."
