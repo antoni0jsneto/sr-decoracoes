@@ -1,17 +1,17 @@
-import React from "react"
-import type { Metadata } from "next"
-import { Inter, Playfair_Display } from "next/font/google"
-import Script from "next/script"
+import React from "react";
+import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
+import Script from "next/script";
 
-import "./globals.css"
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
-})
+});
 
-const siteUrl = "https://sr-decoracoes.com.br"
+const siteUrl = "https://sr-decoracoes.com.br";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -52,7 +52,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "SR Decorações - Persianas, Cortinas, Sofás, Pisos e Redes de Proteção",
+    title:
+      "SR Decorações - Persianas, Cortinas, Sofás, Pisos e Redes de Proteção",
     description:
       "Lavagem profissional, manutenção especializada e venda de persianas e cortinas. Lavagem e reforma de sofás. Instalação de carpete, paviflex e redes de proteção. Orçamento grátis via WhatsApp!",
     type: "website",
@@ -70,7 +71,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SR Decorações - Persianas, Cortinas, Sofás, Pisos e Redes de Proteção",
+    title:
+      "SR Decorações - Persianas, Cortinas, Sofás, Pisos e Redes de Proteção",
     description:
       "Lavagem profissional, manutenção especializada e venda de persianas e cortinas. Orçamento grátis via WhatsApp!",
     images: [`${siteUrl}/images/og-image.jpg`],
@@ -92,12 +94,12 @@ export const metadata: Metadata = {
   verification: {
     google: "seu-google-site-verification-aqui",
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   const schemaData = {
     "@context": "https://schema.org",
@@ -156,7 +158,7 @@ export default function RootLayout({
       ratingValue: "4.8",
       ratingCount: "150",
     },
-  }
+  };
 
   return (
     <html lang="pt-BR">
@@ -170,6 +172,14 @@ export default function RootLayout({
           name="google-site-verification"
           content="seu-google-site-verification-aqui"
         />
+        <link rel="icon" href="/images/favicon.ico" />
+        <link rel="shortcut icon" href="/images/logo.ico" />
+        <link
+          rel="icon"
+          type="image/avif"
+          href="/images/logo-sr-decoracoes.avif"
+        />
+        <link rel="apple-touch-icon" href="/images/logo-sr-decoracoes.avif" />
       </head>
       <body
         className={`${inter.variable} ${playfair.variable} font-sans antialiased`}
@@ -177,5 +187,5 @@ export default function RootLayout({
         {children}
       </body>
     </html>
-  )
+  );
 }

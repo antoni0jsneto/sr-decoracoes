@@ -68,7 +68,7 @@ export function Header() {
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
           <div className="h-14 w-14 rounded-full bg-transparent shadow-md flex items-center justify-center overflow-hidden">
             <Image
-              src="/images/icone-logo.svg"
+              src="/images/logo.svg"
               alt="SR Decorações"
               width={40}
               height={40}

@@ -11,7 +11,7 @@ export function Footer() {
             <div className="mb-4 flex items-center gap-3">
               <div className="h-14 w-14 rounded-full bg-white shadow-md flex items-center justify-center overflow-hidden">
                 <Image
-                  src="/images/icone-logo.svg"
+                  src="/images/logo.svg"
                   alt="SR Decorações"
                   width={40}
                   height={40}
