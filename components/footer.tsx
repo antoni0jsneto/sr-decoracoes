@@ -15,6 +15,7 @@ export function Footer() {
                   alt="SR Decorações"
                   width={40}
                   height={40}
+                  className="h-full w-full object-contain rounded-full"
                 />
               </div>
 
