@@ -66,14 +66,14 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <Image
-            src="/images/icone-logo.png"
-            alt="SR Decorações"
-            width={48}
-            height={48}
-            className="h-10 w-10 rounded-full lg:h-12 lg:w-12"
-            priority
-          />
+          <div className="h-14 w-14 rounded-full bg-transparent shadow-md flex items-center justify-center overflow-hidden">
+            <Image
+              src="/images/icone-logo.svg"
+              alt="SR Decorações"
+              width={40}
+              height={40}
+            />
+          </div>
           <div className="flex flex-col gap-0 p-0">
             <span className="text-sm font-bold leading-none uppercase tracking-widest text-[#043761]">
               PERSIANAS & DECORAÇÕES
