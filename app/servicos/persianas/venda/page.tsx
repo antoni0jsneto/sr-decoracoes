@@ -1,32 +1,10 @@
 import type { Metadata } from "next"
 import { ServicePageLayout } from "@/components/service-page-layout"
+import { getServiceMetadata, serviceSchema } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title:
-    "Venda de Persianas e Cortinas em São Paulo | SR Decorações",
-  description:
-    "Venda e instalação de persianas e cortinas de diversos modelos. Cortina rolô, romana, double vision, persiana horizontal e vertical. Orçamento grátis via WhatsApp.",
-  keywords: [
-    "venda de persianas",
-    "comprar persianas",
-    "cortina rolô",
-    "cortina romana",
-    "persiana horizontal",
-    "persiana vertical",
-    "cortina double vision",
-    "persianas são paulo",
-    "venda de cortinas",
-  ],
-  openGraph: {
-    title: "Venda de Persianas e Cortinas | SR Decorações",
-    description:
-      "Diversos modelos de persianas e cortinas. Medição e instalação inclusa. Orçamento grátis!",
-    type: "website",
-    locale: "pt_BR",
-  },
-}
+export const metadata: Metadata = getServiceMetadata("persianas/venda")
 
-const jsonLd = {
+const jsonLd = serviceSchema("persianas/venda", {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Venda de Persianas e Cortinas",
@@ -43,7 +21,7 @@ const jsonLd = {
     "@type": "City",
     name: "São Paulo",
   },
-}
+})
 
 const benefits = [
   "Grande variedade de modelos: rolô, romana, double vision, horizontal e vertical",

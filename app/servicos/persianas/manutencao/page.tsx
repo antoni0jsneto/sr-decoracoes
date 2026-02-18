@@ -1,29 +1,10 @@
 import type { Metadata } from "next"
 import { ServicePageLayout } from "@/components/service-page-layout"
+import { getServiceMetadata, serviceSchema } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title:
-    "Manutenção de Persianas e Cortinas em São Paulo | SR Decorações",
-  description:
-    "Manutenção e conserto profissional de persianas e cortinas. Troca de peças, ajustes e reparos. Orçamento grátis via WhatsApp. Atendemos toda Grande São Paulo.",
-  keywords: [
-    "manutenção de persianas",
-    "conserto de persianas",
-    "reparo de persianas",
-    "troca de peças persianas",
-    "manutenção de cortinas",
-    "conserto de persianas são paulo",
-  ],
-  openGraph: {
-    title: "Manutenção de Persianas e Cortinas | SR Decorações",
-    description:
-      "Conserto e manutenção profissional de persianas e cortinas. Troca de peças e ajustes. Orçamento grátis!",
-    type: "website",
-    locale: "pt_BR",
-  },
-}
+export const metadata: Metadata = getServiceMetadata("persianas/manutencao")
 
-const jsonLd = {
+const jsonLd = serviceSchema("persianas/manutencao", {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Manutenção de Persianas e Cortinas",
@@ -40,7 +21,7 @@ const jsonLd = {
     "@type": "City",
     name: "São Paulo",
   },
-}
+})
 
 const benefits = [
   "Conserto de todos os tipos e modelos de persianas e cortinas",

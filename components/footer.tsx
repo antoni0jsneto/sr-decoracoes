@@ -39,19 +39,19 @@ export function Footer() {
             </h3>
             <nav className="mb-6 flex flex-col gap-3">
               <Link
-                href="/servicos/lavagem-persianas-cortinas"
+                href="/servicos/persianas/lavagem"
                 className="text-sm text-primary-foreground/70 transition-colors hover:text-primary"
               >
                 Lavagem de Persianas e Cortinas
               </Link>
               <Link
-                href="/servicos/manutencao-persianas-cortinas"
+                href="/servicos/persianas/manutencao"
                 className="text-sm text-primary-foreground/70 transition-colors hover:text-primary"
               >
                 Manutenção de Persianas e Cortinas
               </Link>
               <Link
-                href="/servicos/venda-persianas-cortinas"
+                href="/servicos/persianas/venda"
                 className="text-sm text-primary-foreground/70 transition-colors hover:text-primary"
               >
                 Venda de Persianas e Cortinas

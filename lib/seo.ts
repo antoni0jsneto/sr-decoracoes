@@ -11,7 +11,7 @@ export interface ServiceMetadata {
 }
 
 const services: Record<string, ServiceMetadata> = {
-  "lavagem-persianas-cortinas": {
+  "persianas/lavagem": {
     title: "Lavagem de Persianas e Cortinas | SR Decorações",
     description:
       "Lavagem profissional de persianas e cortinas em São Paulo. Eliminamos ácaros, bactérias e mau cheiro com técnicas especializadas. Orçamento grátis via WhatsApp!",
@@ -31,7 +31,7 @@ const services: Record<string, ServiceMetadata> = {
     ],
     serviceType: "Lavagem de Persianas e Cortinas",
   },
-  "manutencao-persianas-cortinas": {
+  "persianas/manutencao": {
     title: "Manutenção de Persianas e Cortinas | SR Decorações",
     description:
       "Manutenção especializada de persianas e cortinas em São Paulo. Conserto, troca de peças e ajustes profissionais. Não troque suas persianas, conserte com quem entende! Orçamento grátis.",
@@ -51,7 +51,7 @@ const services: Record<string, ServiceMetadata> = {
     ],
     serviceType: "Manutenção de Persianas e Cortinas",
   },
-  "venda-persianas-cortinas": {
+  "persianas/venda": {
     title: "Venda de Persianas e Cortinas | SR Decorações",
     description:
       "Venda de persianas e cortinas para residências e empresas em São Paulo. Diversos modelos, medição e instalação inclusos. Transforme seus ambientes com qualidade!",

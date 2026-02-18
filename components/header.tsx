@@ -21,9 +21,9 @@ const navItems: NavItem[] = [
   {
     label: "Persianas e Cortinas",
     children: [
-      { label: "Lavagem", href: "/servicos/lavagem-persianas-cortinas" },
-      { label: "Manutenção", href: "/servicos/manutencao-persianas-cortinas" },
-      { label: "Venda", href: "/servicos/venda-persianas-cortinas" },
+      { label: "Lavagem", href: "/servicos/persianas/lavagem" },
+      { label: "Manutenção", href: "/servicos/persianas/manutencao" },
+      { label: "Venda", href: "/servicos/persianas/venda" },
     ],
   },
   {

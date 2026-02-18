@@ -8,7 +8,7 @@ const services = [
     description:
       "Higienização profissional que elimina ácaros, bactérias e mau cheiro. Suas persianas e cortinas novas de novo!",
     image: "/images/lavagem-persianas.jpg",
-    href: "/servicos/lavagem-persianas-cortinas",
+    href: "/servicos/persianas/lavagem",
     highlight: true,
   },
   {
@@ -16,7 +16,7 @@ const services = [
     description:
       "Conserto, troca de peças e ajustes. Não troque suas persianas, conserte com quem entende do assunto.",
     image: "/images/manutencao-persianas.jpg",
-    href: "/servicos/manutencao-persianas-cortinas",
+    href: "/servicos/persianas/manutencao",
     highlight: true,
   },
   {
@@ -24,7 +24,7 @@ const services = [
     description:
       "Diversos modelos de persianas e cortinas para residências e empresas. Medição e instalação inclusa.",
     image: "/images/venda-persianas.jpg",
-    href: "/servicos/venda-persianas-cortinas",
+    href: "/servicos/persianas/venda",
     highlight: false,
   },
   {
