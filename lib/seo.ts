@@ -1,13 +1,13 @@
-import type { Metadata } from "next"
+import type { Metadata } from "next";
 
-const siteUrl = "https://sr-decoracoes.com.br"
+const siteUrl = "https://sr-decoracoes.com.br";
 
 export interface ServiceMetadata {
-  title: string
-  description: string
-  keywords: string[]
-  shortDescription: string
-  serviceType: string
+  title: string;
+  description: string;
+  keywords: string[];
+  shortDescription: string;
+  serviceType: string;
 }
 
 const services: Record<string, ServiceMetadata> = {
@@ -151,13 +151,13 @@ const services: Record<string, ServiceMetadata> = {
     ],
     serviceType: "Redes de Proteção",
   },
-}
+};
 
 export function getServiceMetadata(slug: string): Metadata {
-  const service = services[slug]
+  const service = services[slug];
 
   if (!service) {
-    return {}
+    return {};
   }
 
   return {
@@ -180,24 +180,21 @@ export function getServiceMetadata(slug: string): Metadata {
     alternates: {
       canonical: `${siteUrl}/servicos/${slug}`,
     },
-  }
+  };
 }
 
 export function getServiceData(slug: string): ServiceMetadata | null {
-  return services[slug] || null
+  return services[slug] || null;
 }
 
 export function getAllServices() {
   return Object.entries(services).map(([slug, data]) => ({
     slug,
     ...data,
-  }))
+  }));
 }
 
-export const serviceSchema = (
-  slug: string,
-  service: ServiceMetadata
-) => ({
+export const serviceSchema = (slug: string, service: ServiceMetadata) => ({
   "@context": "https://schema.org",
   "@type": "Service",
   "@id": `${siteUrl}/servicos/${slug}`,
@@ -221,4 +218,4 @@ export const serviceSchema = (
     "@type": "ServiceChannel",
     serviceUrl: `${siteUrl}/servicos/${slug}`,
   },
-})
+});

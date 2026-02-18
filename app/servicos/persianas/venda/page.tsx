@@ -1,8 +1,8 @@
-import type { Metadata } from "next"
-import { ServicePageLayout } from "@/components/service-page-layout"
-import { getServiceMetadata, serviceSchema } from "@/lib/seo"
+import type { Metadata } from "next";
+import { ServicePageLayout } from "@/components/service-page-layout";
+import { getServiceMetadata, serviceSchema } from "@/lib/seo";
 
-export const metadata: Metadata = getServiceMetadata("persianas/venda")
+export const metadata: Metadata = getServiceMetadata("persianas/venda");
 
 const jsonLd = serviceSchema("persianas/venda", {
   "@context": "https://schema.org",
@@ -21,7 +21,7 @@ const jsonLd = serviceSchema("persianas/venda", {
     "@type": "City",
     name: "São Paulo",
   },
-})
+});
 
 const benefits = [
   "Grande variedade de modelos: rolô, romana, double vision, horizontal e vertical",
@@ -32,7 +32,7 @@ const benefits = [
   "Preços competitivos e condições de pagamento facilitadas",
   "Orientação profissional para escolha do melhor modelo para cada ambiente",
   "Garantia do fabricante em todos os produtos vendidos",
-]
+];
 
 const details = [
   {
@@ -59,7 +59,7 @@ const details = [
     title: "Medição e Instalação",
     text: "Nossa equipe vai até você para medição precisa do ambiente e instalação profissional, garantindo acabamento perfeito.",
   },
-]
+];
 
 export default function VendaPersianasPage() {
   return (
@@ -74,5 +74,5 @@ export default function VendaPersianasPage() {
       whatsappMessage="Olá! Gostaria de solicitar um orçamento para compra de persianas/cortinas."
       jsonLd={jsonLd}
     />
-  )
+  );
 }

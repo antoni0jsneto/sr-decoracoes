@@ -4,9 +4,11 @@ import { ServicePageLayout } from "@/components/service-page-layout";
 import { getServiceMetadata, serviceSchema } from "@/lib/seo";
 import { Breadcrumbs, BreadcrumbSchema } from "@/components/breadcrumbs";
 
-export const metadata: Metadata = getServiceMetadata("persianas/lavagem");
+export const metadata: Metadata = getServiceMetadata(
+  "lavagem-persianas-cortinas",
+);
 
-const jsonLd = serviceSchema("persianas/lavagem", {
+const jsonLd = serviceSchema("lavagem-persianas-cortinas", {
   title: "Lavagem de Persianas e Cortinas | SR Decorações",
   description:
     "Lavagem profissional de persianas e cortinas em São Paulo. Eliminamos ácaros, bactérias e mau cheiro com técnicas especializadas. Orçamento grátis via WhatsApp!",

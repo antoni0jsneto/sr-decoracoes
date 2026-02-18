@@ -1,8 +1,8 @@
-import type { Metadata } from "next"
-import { ServicePageLayout } from "@/components/service-page-layout"
-import { getServiceMetadata, serviceSchema } from "@/lib/seo"
+import type { Metadata } from "next";
+import { ServicePageLayout } from "@/components/service-page-layout";
+import { getServiceMetadata, serviceSchema } from "@/lib/seo";
 
-export const metadata: Metadata = getServiceMetadata("persianas/manutencao")
+export const metadata: Metadata = getServiceMetadata("persianas/manutencao");
 
 const jsonLd = serviceSchema("persianas/manutencao", {
   "@context": "https://schema.org",
@@ -21,7 +21,7 @@ const jsonLd = serviceSchema("persianas/manutencao", {
     "@type": "City",
     name: "São Paulo",
   },
-})
+});
 
 const benefits = [
   "Conserto de todos os tipos e modelos de persianas e cortinas",
@@ -32,7 +32,7 @@ const benefits = [
   "Serviço rápido com dia e horário agendados",
   "Custo muito inferior à compra de persianas novas",
   "Garantia de qualidade nos serviços e peças utilizadas",
-]
+];
 
 const details = [
   {
@@ -59,7 +59,7 @@ const details = [
     title: "Economia Garantida",
     text: "Não troque suas persianas! A manutenção custa muito menos que a compra de peças novas e deixa tudo funcionando perfeitamente.",
   },
-]
+];
 
 export default function ManutencaoPersianasPage() {
   return (
@@ -74,5 +74,5 @@ export default function ManutencaoPersianasPage() {
       whatsappMessage="Olá! Gostaria de solicitar um orçamento para manutenção de persianas e cortinas."
       jsonLd={jsonLd}
     />
-  )
+  );
 }

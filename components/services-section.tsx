@@ -1,6 +1,6 @@
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const services = [
   {
@@ -59,7 +59,7 @@ const services = [
     href: "/servicos/redes-de-protecao",
     highlight: false,
   },
-]
+];
 
 export function ServicesSection() {
   return (
@@ -75,9 +75,9 @@ export function ServicesSection() {
             </span>
           </h2>
           <p className="mx-auto max-w-2xl text-muted-foreground">
-            Oferecemos serviços especializados de lavagem, manutenção e venda
-            de persianas e cortinas, lavagem e reforma de sofás,
-            instalação de carpete e paviflex, e redes de proteção.
+            Oferecemos serviços especializados de lavagem, manutenção e venda de
+            persianas e cortinas, lavagem e reforma de sofás, instalação de
+            carpete e paviflex, e redes de proteção.
           </p>
         </div>
 
@@ -122,5 +122,5 @@ export function ServicesSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
