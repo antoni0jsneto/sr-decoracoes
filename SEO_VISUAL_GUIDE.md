@@ -3,7 +3,7 @@
 ## 🏗️ Arquitetura de URLs
 
 ```
-https://sr-decoracoes.com.br/
+https://srdecoracoess.com/
 │
 ├── / (Homepage)
 │   └── Schema: LocalBusiness
@@ -54,6 +54,7 @@ https://sr-decoracoes.com.br/
 ## 🔍 Como Google vê seu site
 
 ### Fase 1: Crawling (Rastreamento)
+
 ```
 Google Bot acessa:
 ├── robots.txt ✅ (liberado)
@@ -69,6 +70,7 @@ Google Bot acessa:
 ```
 
 ### Fase 2: Indexação (Compreensão)
+
 ```
 Google entende:
 ├── 🏢 LocalBusiness: SR Decorações (Homepage)
@@ -82,6 +84,7 @@ Google entende:
 ```
 
 ### Fase 3: Ranking (Posicionamento)
+
 ```
 Quando alguém busca:
 
@@ -106,7 +109,7 @@ Google encontra:
 ```
 ┌─────────────────────────────────────────┐
 │ SR Decorações - Lavagem de Persianas    │ ← Title tag
-│ https://sr-decoracoes.com.br/servicos/  │ ← URL
+│ https://srdecoracoess.com/servicos/  │ ← URL
 │ lavagem-persianas-cortinas             │
 ├─────────────────────────────────────────┤
 │ Lavagem profissional de persianas e     │ ← Meta description
@@ -151,6 +154,7 @@ Google encontra:
 ## 🎯 Estrutura de Dados (Schema.org)
 
 ### Homepage
+
 ```json
 {
   "@type": "LocalBusiness",
@@ -158,7 +162,7 @@ Google encontra:
   "description": "Especialistas em...",
   "address": "...",
   "telephone": "+55 11 ...",
-  "url": "https://sr-decoracoes.com.br",
+  "url": "https://srdecoracoess.com",
   "image": "logo.avif",
   "knowsAbout": [
     "Lavagem de Persianas",
@@ -169,6 +173,7 @@ Google encontra:
 ```
 
 ### Página de Serviço
+
 ```json
 {
   "@type": "Service",
@@ -182,6 +187,7 @@ Google encontra:
 ```
 
 ### Breadcrumbs
+
 ```json
 {
   "@type": "BreadcrumbList",
@@ -189,17 +195,17 @@ Google encontra:
     {
       "position": 1,
       "name": "Início",
-      "item": "https://sr-decoracoes.com.br"
+      "item": "https://srdecoracoess.com"
     },
     {
       "position": 2,
       "name": "Serviços",
-      "item": "https://sr-decoracoes.com.br/#servicos"
+      "item": "https://srdecoracoess.com/#servicos"
     },
     {
       "position": 3,
       "name": "Lavagem de Persianas",
-      "item": "https://sr-decoracoes.com.br/servicos/lavagem-persianas-cortinas"
+      "item": "https://srdecoracoess.com/servicos/lavagem-persianas-cortinas"
     }
   ]
 }
@@ -210,6 +216,7 @@ Google encontra:
 ## 📊 Impacto por Números
 
 ### Antes (Sem otimização)
+
 ```
 Aparições de busca:    5-10 por mês
 Cliques:              0-1 por mês
@@ -219,6 +226,7 @@ ROI:                  Negativo
 ```
 
 ### Depois (Com otimização + Google Ads)
+
 ```
 Aparições de busca:    100-300 por mês
 Cliques:              10-50 por mês
@@ -283,6 +291,7 @@ ROI:                  1500-3000% (positivo!)
 ## 🎯 KPIs para Monitorar
 
 ### Google Search Console
+
 ```
 Por página:
 ├── Impressões (quantas vezes apareceu)
@@ -292,6 +301,7 @@ Por página:
 ```
 
 ### Google Analytics
+
 ```
 Por página de serviço:
 ├── Visitantes únicos - Meta: >50/mês
@@ -301,6 +311,7 @@ Por página de serviço:
 ```
 
 ### Negócio
+
 ```
 ├── Leads via WhatsApp - Meta: >5/semana
 ├── Taxa de conversão WhatsApp → Cliente - Meta: >30%
@@ -313,21 +324,25 @@ Por página de serviço:
 ## 🚀 Roadmap 90 Dias
 
 ### Semana 1-2: Setup
+
 - [ ] Google Search Console ✅
 - [ ] Google Meu Negócio ✅
 - [ ] Sitemap enviado ✅
 
 ### Semana 3-4: Primeiros dados
+
 - [ ] Acompanhar impressões
 - [ ] Começam cliques
 - [ ] Primeiros WhatsApps
 
 ### Semana 5-8: Otimização
+
 - [ ] Analisar dados
 - [ ] Ajustar CTAs
 - [ ] Começar Google Ads
 
 ### Semana 9-12: Scale
+
 - [ ] Aumentar orçado Ads
 - [ ] Otimizar por conversão
 - [ ] Planejar Fase 2
@@ -341,7 +356,7 @@ Por página de serviço:
 ✅ **Breadcrumbs estruturados** para UX/SEO  
 ✅ **Google Meu Negócio** com todos os serviços  
 ✅ **CTAs otimizadas** por página  
-✅ **Tracking de conversão** por serviço  
+✅ **Tracking de conversão** por serviço
 
 **Resultado:** Sua concorrência vê apenas 1 página. Você tem 7! 🎯
 

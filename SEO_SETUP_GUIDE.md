@@ -13,7 +13,7 @@
    - Categoria: Serviço de Limpeza / Decoração Interior
    - Endereço: Seu endereço completo
    - Telefone: Seu número WhatsApp
-   - Site: https://sr-decoracoes.com.br
+   - Site: https://srdecoracoess.com
    - Horário de funcionamento
    - Descrição: "Especialistas em lavagem profissional, manutenção especializada e venda de persianas e cortinas. Lavagem e reforma de sofás. Instalação de carpete, paviflex e redes de proteção."
 
@@ -46,7 +46,7 @@
 1. **Acesse:** https://search.google.com/search-console
 2. **Adicione sua propriedade:**
    - Clique em "Adicionar propriedade"
-   - Digite: https://sr-decoracoes.com.br
+   - Digite: https://srdecoracoess.com
 
 3. **Verifique o domínio:**
    - Escolha o método: **Meta tag HTML** (mais fácil)
@@ -59,12 +59,12 @@
 4. **Envie o Sitemap:**
    - No Search Console, vá em "Sitemaps"
    - Clique em "Adicionar novo sitemap"
-   - Digite: `https://sr-decoracoes.com.br/sitemap.xml`
+   - Digite: `https://srdecoracoess.com/sitemap.xml`
    - Clique em "Enviar"
 
 5. **Configure URLs canonicalizadas:**
    - Vá em "Configurações"
-   - Defina: https://sr-decoracoes.com.br como URL preferida
+   - Defina: https://srdecoracoess.com como URL preferida
 
 6. **Monitore performance:**
    - Verifique em "Performance" quais palavras-chave estão ranqueando
@@ -75,37 +75,44 @@
 ## 📢 Estratégia de Palavras-chave por Serviço
 
 ### Lavagem de Persianas e Cortinas
+
 - "lavagem de persianas são paulo"
 - "limpeza de persianas profissional"
 - "higienização de cortinas"
 - "remover ácaros de persianas"
 
 ### Manutenção de Persianas e Cortinas
+
 - "conserto de persianas"
 - "manutenção de cortinas são paulo"
 - "troca de peças de persianas"
 
 ### Venda de Persianas e Cortinas
+
 - "venda de persianas são paulo"
 - "comprar cortinas"
 - "instalação de persianas"
 
 ### Lavagem de Sofás
+
 - "lavagem de sofás são paulo"
 - "limpeza de sofás profissional"
 - "remover mancha de sofá"
 
 ### Reforma de Sofás
+
 - "reforma de sofás"
 - "estofamento de sofás"
 - "troca de tecido sofá"
 
 ### Instalação de Pisos
+
 - "instalação de carpete são paulo"
 - "instalação de paviflex"
 - "colocar carpete em casa"
 
 ### Redes de Proteção
+
 - "redes de proteção infantil"
 - "proteção de janela são paulo"
 - "rede de proteção para pets"
@@ -117,11 +124,13 @@
 ### Estrutura recomendada por serviço:
 
 **Campanha 1: Lavagem**
+
 - Grupo de Ads: "Lavagem de Persianas"
 - Palavras-chave: "lavagem persianas são paulo", "limpeza persianas", "higienização persianas"
 - Anúncio direcionado para: `/servicos/lavagem-persianas-cortinas`
 
 **Campanha 2: Manutenção**
+
 - Grupo de Ads: "Manutenção de Persianas"
 - Palavras-chave: "conserto persianas", "manutenção persianas", "reparo cortinas"
 - Anúncio direcionado para: `/servicos/manutencao-persianas-cortinas`
@@ -134,14 +143,14 @@
 
 Acompanhe o desempenho dessas URLs específicas:
 
-- Homepage: https://sr-decoracoes.com.br/
-- Lavagem de Persianas: https://sr-decoracoes.com.br/servicos/lavagem-persianas-cortinas
-- Manutenção: https://sr-decoracoes.com.br/servicos/manutencao-persianas-cortinas
-- Venda: https://sr-decoracoes.com.br/servicos/venda-persianas-cortinas
-- Lavagem de Sofás: https://sr-decoracoes.com.br/servicos/lavagem-sofas
-- Reforma de Sofás: https://sr-decoracoes.com.br/servicos/reforma-sofas
-- Instalação de Pisos: https://sr-decoracoes.com.br/servicos/instalacao-pisos
-- Redes de Proteção: https://sr-decoracoes.com.br/servicos/redes-de-protecao
+- Homepage: https://srdecoracoess.com/
+- Lavagem de Persianas: https://srdecoracoess.com/servicos/lavagem-persianas-cortinas
+- Manutenção: https://srdecoracoess.com/servicos/manutencao-persianas-cortinas
+- Venda: https://srdecoracoess.com/servicos/venda-persianas-cortinas
+- Lavagem de Sofás: https://srdecoracoess.com/servicos/lavagem-sofas
+- Reforma de Sofás: https://srdecoracoess.com/servicos/reforma-sofas
+- Instalação de Pisos: https://srdecoracoess.com/servicos/instalacao-pisos
+- Redes de Proteção: https://srdecoracoess.com/servicos/redes-de-protecao
 
 ---
 
@@ -163,7 +172,7 @@ Acompanhe o desempenho dessas URLs específicas:
 
 ## 💡 Dicas Extras
 
-1. **Alterar domínio:** Substitua "sr-decoracoes.com.br" por seu domínio real em:
+1. **Alterar domínio:** Substitua "srdecoracoess.com" por seu domínio real em:
    - `lib/seo.ts` (várias linhas)
    - `app/layout.tsx`
    - `public/robots.txt`

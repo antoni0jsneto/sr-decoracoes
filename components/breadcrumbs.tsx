@@ -1,13 +1,13 @@
-import Link from "next/link"
-import { ChevronRight } from "lucide-react"
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 interface BreadcrumbItem {
-  label: string
-  href?: string
+  label: string;
+  href?: string;
 }
 
 interface BreadcrumbsProps {
-  items: BreadcrumbItem[]
+  items: BreadcrumbItem[];
 }
 
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
@@ -32,32 +32,28 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
         </div>
       ))}
     </nav>
-  )
+  );
 }
 
-export function BreadcrumbSchema({
-  items,
-}: {
-  items: BreadcrumbItem[]
-}) {
+export function BreadcrumbSchema({ items }: { items: BreadcrumbItem[] }) {
   const schemaItems = [
     {
       "@type": "ListItem",
       position: 1,
       name: "Início",
-      item: "https://sr-decoracoes.com.br/",
+      item: "https://srdecoracoess.com/",
     },
     ...items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 2,
       name: item.label,
-      item: item.href ? `https://sr-decoracoes.com.br${item.href}` : undefined,
+      item: item.href ? `https://srdecoracoess.com${item.href}` : undefined,
     })),
-  ]
+  ];
 
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: schemaItems.filter((item) => item.item),
-  }
+  };
 }

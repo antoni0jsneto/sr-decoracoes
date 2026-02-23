@@ -56,10 +56,11 @@
 ### Google - Quando alguém pesquisa seus serviços:
 
 **Busca:** "lavagem de persianas são paulo"
+
 ```
 ┌────────────────────────────────────────┐
 │ SR Decorações - Lavagem Persianas      │ ← Seu site aparece
-│ https://sr-decoracoes.com.br/servicos/ │
+│ https://srdecoracoess.com/servicos/ │
 │ ★★★★★ (4.8) 150 avaliações           │ ← Com rating
 │                                        │
 │ Lavagem profissional de persianas...   │ ← Description otimizada
@@ -67,10 +68,11 @@
 ```
 
 **Busca:** "conserto de persianas"
+
 ```
 ┌────────────────────────────────────────┐
 │ SR Decorações - Manutenção Persianas   │ ← Página DIFERENTE
-│ https://sr-decoracoes.com.br/servicos/ │
+│ https://srdecoracoess.com/servicos/ │
 │                                        │
 │ Conserto, troca de peças e ajustes... │
 └────────────────────────────────────────┘
@@ -84,34 +86,34 @@
 
 ```
 Homepage (Schema: LocalBusiness)
-https://sr-decoracoes.com.br/
+https://srdecoracoess.com/
 
 Página 1: Lavagem Persianas (Schema: Service)
-https://sr-decoracoes.com.br/servicos/lavagem-persianas-cortinas
+https://srdecoracoess.com/servicos/lavagem-persianas-cortinas
 
 Página 2: Manutenção Persianas (Schema: Service)
-https://sr-decoracoes.com.br/servicos/manutencao-persianas-cortinas
+https://srdecoracoess.com/servicos/manutencao-persianas-cortinas
 
 Página 3: Venda Persianas (Schema: Service)
-https://sr-decoracoes.com.br/servicos/venda-persianas-cortinas
+https://srdecoracoess.com/servicos/venda-persianas-cortinas
 
 Página 4: Lavagem Sofás (Schema: Service)
-https://sr-decoracoes.com.br/servicos/lavagem-sofas
+https://srdecoracoess.com/servicos/lavagem-sofas
 
 Página 5: Reforma Sofás (Schema: Service)
-https://sr-decoracoes.com.br/servicos/reforma-sofas
+https://srdecoracoess.com/servicos/reforma-sofas
 
 Página 6: Instalação Pisos (Schema: Service)
-https://sr-decoracoes.com.br/servicos/instalacao-pisos
+https://srdecoracoess.com/servicos/instalacao-pisos
 
 Página 7: Redes Proteção (Schema: Service)
-https://sr-decoracoes.com.br/servicos/redes-de-protecao
+https://srdecoracoess.com/servicos/redes-de-protecao
 
 Sitemap
-https://sr-decoracoes.com.br/sitemap.xml
+https://srdecoracoess.com/sitemap.xml
 
 Robots.txt
-https://sr-decoracoes.com.br/robots.txt
+https://srdecoracoess.com/robots.txt
 ```
 
 ---
@@ -119,28 +121,31 @@ https://sr-decoracoes.com.br/robots.txt
 ## 🎁 Benefícios do que foi criado
 
 ### Para Google (Ranqueamento)
+
 ✅ Cada página com schema.org específico  
 ✅ Sitemap dinâmico (descobre todas)  
 ✅ Robots.txt otimizado (rastreia rápido)  
 ✅ Metadata com keywords por serviço  
 ✅ Breadcrumbs estruturado (UX + SEO)  
-✅ Rich snippets nos resultados  
+✅ Rich snippets nos resultados
 
 ### Para Usuários (UX)
+
 ✅ Navegação clara com breadcrumbs  
 ✅ Títulos e descrições relevantes  
 ✅ Imagens com alt text otimizado  
 ✅ Carregamento rápido  
 ✅ Design responsivo  
-✅ CTAs estratégicas por serviço  
+✅ CTAs estratégicas por serviço
 
 ### Para Seu Negócio (Conversão)
+
 ✅ 7 páginas = 7 oportunidades de ranking  
 ✅ Google Meu Negócio com 7 serviços  
 ✅ URLs por serviço (ideal para Google Ads)  
 ✅ Conversão otimizada em cada página  
 ✅ Lead capture via WhatsApp  
-✅ Tracking de performance por serviço  
+✅ Tracking de performance por serviço
 
 ---
 
@@ -181,6 +186,7 @@ TOTAL: 15-30 leads/dia 🎯
 ## 🚀 Próximas Ações (Prioridade 1)
 
 ### Hoje (1 hora)
+
 ```
 1. Abra: README_SEO.md
 2. Siga: Link para SEO_CHECKLIST.md
@@ -188,6 +194,7 @@ TOTAL: 15-30 leads/dia 🎯
 ```
 
 ### Esta Semana (2 horas)
+
 ```
 1. Google Search Console
    - Adicione propriedade
@@ -205,6 +212,7 @@ TOTAL: 15-30 leads/dia 🎯
 ```
 
 ### Próximas Semanas (Contínuo)
+
 ```
 1. Acompanhe dados no Search Console
 2. Comece Google Ads (opcional)
@@ -216,20 +224,26 @@ TOTAL: 15-30 leads/dia 🎯
 ## 📚 Documentação por Perfil
 
 ### 👤 Se você é: PROPRIETÁRIO/GESTOR
+
 **Leia primeiro:**
+
 1. README_SEO.md (5 min)
 2. SEO_CHECKLIST.md (10 min)
 3. Resultado: Entender impacto e próximos passos
 
 ### 👤 Se você é: TÉCNICO/DESENVOLVEDOR
+
 **Leia:**
+
 1. SEO_IMPLEMENTATION.md (20 min)
 2. APPLY_SEO_TEMPLATE.md (15 min)
 3. lib/seo.ts (referência)
 4. Resultado: Implementar nas outras 6 páginas
 
 ### 👤 Se você é: MARKETING/ADS
+
 **Leia:**
+
 1. SEO_SETUP_GUIDE.md (Google Ads strategy)
 2. SEO_VISUAL_GUIDE.md (Fluxos de conversão)
 3. SEO_CHECKLIST.md (Monitorar KPIs)
@@ -240,6 +254,7 @@ TOTAL: 15-30 leads/dia 🎯
 ## ✅ Checklist de Implementação
 
 **Já feito:**
+
 - [x] Metadata dinâmica
 - [x] Schema.org LocalBusiness + Service
 - [x] Sitemap dinâmico
@@ -249,6 +264,7 @@ TOTAL: 15-30 leads/dia 🎯
 - [x] Guias completos
 
 **Você precisa fazer:**
+
 - [ ] Aplicar SEO em outras 6 páginas (1 hora)
 - [ ] Google Search Console (5 min)
 - [ ] Google Meu Negócio (20 min)
@@ -310,7 +326,7 @@ ROI = 1500-5000% 💹
 ✅ Pronto para Google Ads  
 ✅ Com Google Meu Negócio  
 ✅ Estruturado para conversão  
-✅ Escalável para crescimento  
+✅ Escalável para crescimento
 
 ---
 
@@ -319,16 +335,19 @@ ROI = 1500-5000% 💹
 ### 👉 Abra em sequência:
 
 1. **README_SEO.md** (2 min)
+
    ```
    Entender o que foi feito
    ```
 
 2. **SEO_CHECKLIST.md** (5 min)
+
    ```
    Ver próximas ações
    ```
 
 3. **APPLY_SEO_TEMPLATE.md** (10 min)
+
    ```
    Copiar SEO nas 6 páginas
    ```
@@ -347,7 +366,7 @@ ROI = 1500-5000% 💹
 **Data:** Fevereiro 2026  
 **Status:** ✅ Pronto para uso  
 **Próximo:** Siga os próximos passos acima  
-**Suporte:** Veja documentação correspondente  
+**Suporte:** Veja documentação correspondente
 
 ---
 

@@ -11,7 +11,7 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
-const siteUrl = "https://sr-decoracoes.com.br";
+const siteUrl = "https://srdecoracoess.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
