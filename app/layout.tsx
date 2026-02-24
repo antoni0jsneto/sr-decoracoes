@@ -195,6 +195,24 @@ gtag('js', new Date());
 gtag('config', 'AW-17864340115');`,
           }}
         />
+        <Script
+          id="gtag-conversion"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17864340115/9dQ-CM325f0bEJPlsMZC',
+      'event_callback': callback
+  });
+  return false;
+}`,
+          }}
+        />
       </head>
       <body
         className={`${inter.variable} ${playfair.variable} font-sans antialiased`}
