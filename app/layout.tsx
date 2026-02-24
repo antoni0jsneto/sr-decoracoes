@@ -180,6 +180,21 @@ export default function RootLayout({
           href="/images/logo-sr-decoracoes.avif"
         />
         <link rel="apple-touch-icon" href="/images/logo-sr-decoracoes.avif" />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17864340115"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'AW-17864340115');`,
+          }}
+        />
       </head>
       <body
         className={`${inter.variable} ${playfair.variable} font-sans antialiased`}
