@@ -121,18 +121,9 @@ export default function RootLayout({
       addressCountry: "BR",
     },
     areaServed: [
-      {
-        "@type": "City",
-        name: "São Paulo",
-      },
-      {
-        "@type": "City",
-        name: "Guarulhos",
-      },
-      {
-        "@type": "City",
-        name: "Osasco",
-      },
+      { "@type": "City", name: "São Paulo" },
+      { "@type": "City", name: "Guarulhos" },
+      { "@type": "City", name: "Osasco" },
     ],
     sameAs: [
       "https://www.facebook.com/srdecoracoes",
@@ -153,7 +144,8 @@ export default function RootLayout({
       "Redes de Proteção",
     ],
     hasMap: "https://maps.google.com/?q=sr+decoracoes+sao+paulo",
-    rating: {
+
+    aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.8",
       ratingCount: "150",
