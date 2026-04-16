@@ -5,22 +5,24 @@ import { getServiceMetadata, serviceSchema } from "@/lib/seo";
 export const metadata: Metadata = getServiceMetadata("persianas/venda");
 
 const jsonLd = serviceSchema("persianas/venda", {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Venda de Persianas e Cortinas",
-  provider: {
-    "@type": "LocalBusiness",
-    name: "SR Decorações",
-    telephone: "+5511924240055",
-    email: "srdecoracoess@gmail.com",
-    areaServed: "São Paulo",
-  },
+  title: "Venda de Persianas e Cortinas | SR Decorações",
   description:
-    "Venda de persianas e cortinas de diversos modelos com medição e instalação profissional inclusa.",
-  areaServed: {
-    "@type": "City",
-    name: "São Paulo",
-  },
+    "Venda de persianas e cortinas para residências e empresas em São Paulo. Diversos modelos, medição e instalação inclusos. Transforme seus ambientes com qualidade!",
+  shortDescription:
+    "Diversos modelos de persianas e cortinas para residências e empresas. Medição e instalação inclusa.",
+  keywords: [
+    "venda de persianas",
+    "venda de cortinas",
+    "persianas para venda",
+    "cortinas para comprar",
+    "instalação de persianas",
+    "persianas são paulo",
+    "cortinas são paulo",
+    "preço de persianas",
+    "tipos de persianas",
+    "cortinas modernas",
+  ],
+  serviceType: "Venda de Persianas e Cortinas",
 });
 
 const benefits = [

@@ -1,47 +1,29 @@
-import type { Metadata } from "next"
-import { ServicePageLayout } from "@/components/service-page-layout"
+import type { Metadata } from "next";
+import { ServicePageLayout } from "@/components/service-page-layout";
+import { getServiceMetadata, serviceSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Lavagem de Sofás em São Paulo | SR Decorações",
+export const metadata: Metadata = getServiceMetadata("lavagem-sofas");
+
+const jsonLd = serviceSchema("lavagem-sofas", {
+  title: "Lavagem de Sofás Profissional | SR Decorações",
   description:
-    "Lavagem e higienização profissional de sofás. Removemos manchas, ácaros, bactérias e mau cheiro. Orçamento grátis via WhatsApp. Atendemos toda Grande São Paulo.",
+    "Limpeza profunda e higienização completa de sofás em São Paulo. Removemos manchas, ácaros e mau cheiro com técnicas avançadas. Seu sofá como novo!",
+  shortDescription:
+    "Limpeza profunda e higienização completa do seu sofá. Removemos manchas, ácaros e mau cheiro.",
   keywords: [
-    "lavagem de sofá",
-    "limpeza de sofá",
-    "higienização de sofá",
-    "lavagem de sofá são paulo",
-    "limpeza de estofado",
-    "impermeabilização de sofá",
-    "lavagem de sofá sp",
-    "limpeza profunda sofá",
+    "lavagem de sofás",
+    "limpeza de sofás",
+    "higienização de sofás",
+    "sofás limpeza profissional",
+    "remoção de manchas",
+    "lavagem de sofás são paulo",
+    "limpeza profunda",
+    "sofás sujos",
+    "higiene de estofados",
+    "sofá como novo",
   ],
-  openGraph: {
-    title: "Lavagem de Sofás | SR Decorações",
-    description:
-      "Lavagem e higienização profissional de sofás. Removemos manchas e mau cheiro. Orçamento grátis!",
-    type: "website",
-    locale: "pt_BR",
-  },
-}
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Lavagem de Sofás",
-  provider: {
-    "@type": "LocalBusiness",
-    name: "SR Decorações",
-    telephone: "+5511924240055",
-    email: "srdecoracoess@gmail.com",
-    areaServed: "São Paulo",
-  },
-  description:
-    "Lavagem e higienização profissional de sofás com remoção de manchas, ácaros e mau cheiro.",
-  areaServed: {
-    "@type": "City",
-    name: "São Paulo",
-  },
-}
+  serviceType: "Lavagem de Sofás",
+});
 
 const benefits = [
   "Lavagem profunda com equipamentos profissionais de alta potência",
@@ -52,7 +34,7 @@ const benefits = [
   "Secagem rápida com equipamentos industriais",
   "Atendemos todos os tipos de tecido e estofados",
   "Serviço realizado no conforto da sua casa ou empresa",
-]
+];
 
 const details = [
   {
@@ -79,7 +61,7 @@ const details = [
     title: "Atendimento Domiciliar",
     text: "Realizamos todo o serviço no conforto da sua casa ou escritório. Sem necessidade de transportar o sofá. Prático e conveniente.",
   },
-]
+];
 
 export default function LavagemSofasPage() {
   return (
@@ -94,5 +76,5 @@ export default function LavagemSofasPage() {
       whatsappMessage="Olá! Gostaria de solicitar um orçamento para lavagem de sofá."
       jsonLd={jsonLd}
     />
-  )
+  );
 }

@@ -1,48 +1,29 @@
-import type { Metadata } from "next"
-import { ServicePageLayout } from "@/components/service-page-layout"
+import type { Metadata } from "next";
+import { ServicePageLayout } from "@/components/service-page-layout";
+import { getServiceMetadata, serviceSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title:
-    "Instalação de Carpete e Paviflex em São Paulo | SR Decorações",
+export const metadata: Metadata = getServiceMetadata("instalacao-pisos");
+
+const jsonLd = serviceSchema("instalacao-pisos", {
+  title: "Instalação de Carpete e Paviflex | SR Decorações",
   description:
     "Instalação profissional de carpete e paviflex para residências e empresas. Acabamento perfeito e duradouro. Orçamento grátis via WhatsApp. Atendemos toda Grande São Paulo.",
+  shortDescription:
+    "Instalação profissional de carpetes e paviflex para residências e empresas. Acabamento perfeito e duradouro.",
   keywords: [
     "instalação de carpete",
     "instalação de paviflex",
     "carpete são paulo",
     "paviflex são paulo",
-    "colocação de carpete",
-    "piso paviflex",
+    "pisos laminados",
+    "serviço de instalação",
     "carpete residencial",
-    "carpete comercial",
+    "paviflex comercial",
+    "acabamento profissional",
+    "pisos duráveis",
   ],
-  openGraph: {
-    title: "Instalação de Carpete e Paviflex | SR Decorações",
-    description:
-      "Instalação profissional de carpete e paviflex. Acabamento perfeito. Orçamento grátis!",
-    type: "website",
-    locale: "pt_BR",
-  },
-}
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Instalação de Carpete e Paviflex",
-  provider: {
-    "@type": "LocalBusiness",
-    name: "SR Decorações",
-    telephone: "+5511924240055",
-    email: "srdecoracoess@gmail.com",
-    areaServed: "São Paulo",
-  },
-  description:
-    "Instalação profissional de carpete e paviflex com acabamento perfeito e duradouro.",
-  areaServed: {
-    "@type": "City",
-    name: "São Paulo",
-  },
-}
+  serviceType: "Instalação de Pisos",
+});
 
 const benefits = [
   "Instalação profissional de carpete em placas e em rolo",
@@ -53,7 +34,7 @@ const benefits = [
   "Preparação completa do contrapiso quando necessário",
   "Limpeza completa do ambiente após a instalação",
   "Garantia de qualidade no serviço e no material utilizado",
-]
+];
 
 const details = [
   {
@@ -80,7 +61,7 @@ const details = [
     title: "Consultoria e Orçamento",
     text: "Visitamos seu espaço para avaliar as condições do local, tirar medidas e apresentar as melhores opções de carpete e paviflex para cada ambiente.",
   },
-]
+];
 
 export default function InstalacaoPisosPage() {
   return (
@@ -95,5 +76,5 @@ export default function InstalacaoPisosPage() {
       whatsappMessage="Olá! Gostaria de solicitar um orçamento para instalação de carpete ou paviflex."
       jsonLd={jsonLd}
     />
-  )
+  );
 }

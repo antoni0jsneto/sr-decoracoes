@@ -5,22 +5,24 @@ import { getServiceMetadata, serviceSchema } from "@/lib/seo";
 export const metadata: Metadata = getServiceMetadata("persianas/manutencao");
 
 const jsonLd = serviceSchema("persianas/manutencao", {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Manutenção de Persianas e Cortinas",
-  provider: {
-    "@type": "LocalBusiness",
-    name: "SR Decorações",
-    telephone: "+5511924240055",
-    email: "srdecoracoess@gmail.com",
-    areaServed: "São Paulo",
-  },
+  title: "Manutenção de Persianas e Cortinas | SR Decorações",
   description:
-    "Manutenção, conserto e troca de peças de persianas e cortinas. Equipe profissional e peças originais.",
-  areaServed: {
-    "@type": "City",
-    name: "São Paulo",
-  },
+    "Manutenção especializada de persianas e cortinas em São Paulo. Conserto, troca de peças e ajustes profissionais. Não troque suas persianas, conserte com quem entende! Orçamento grátis.",
+  shortDescription:
+    "Conserto, troca de peças e ajustes. Não troque suas persianas, conserte com quem entende do assunto.",
+  keywords: [
+    "manutenção de persianas",
+    "manutenção de cortinas",
+    "conserto de persianas",
+    "conserto de cortinas",
+    "reparo de persianas",
+    "troca de peças",
+    "manutenção são paulo",
+    "persianas quebradas",
+    "cortinas danificadas",
+    "serviço de reparo",
+  ],
+  serviceType: "Manutenção de Persianas e Cortinas",
 });
 
 const benefits = [

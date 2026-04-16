@@ -1,47 +1,29 @@
-import type { Metadata } from "next"
-import { ServicePageLayout } from "@/components/service-page-layout"
+import type { Metadata } from "next";
+import { ServicePageLayout } from "@/components/service-page-layout";
+import { getServiceMetadata, serviceSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Reforma de Sofás em São Paulo | SR Decorações",
+export const metadata: Metadata = getServiceMetadata("reforma-sofas");
+
+const jsonLd = serviceSchema("reforma-sofas", {
+  title: "Reforma de Sofás | SR Decorações",
   description:
-    "Reforma e restauração profissional de sofás. Troca de tecido, espuma e estrutura. Renovamos seu sofá com qualidade. Orçamento grátis via WhatsApp.",
+    "Reforma completa de sofás em São Paulo com tecidos de alta qualidade. Renovamos o estofado e deixamos seu sofá como novo!",
+  shortDescription:
+    "Reforma completa do seu sofá com tecidos de alta qualidade. Renovamos o estofado e deixamos como novo.",
   keywords: [
-    "reforma de sofá",
-    "restauração de sofá",
-    "troca de tecido sofá",
-    "troca de espuma sofá",
-    "reforma de estofado",
-    "reforma de sofá são paulo",
-    "reforma de sofá sp",
-    "retapeçamento de sofá",
+    "reforma de sofás",
+    "restauração de sofás",
+    "estofamento",
+    "troca de tecido",
+    "renovação de sofás",
+    "reforma são paulo",
+    "sofá novo",
+    "sofá desgastado",
+    "conserto de sofás",
+    "revestimento de sofás",
   ],
-  openGraph: {
-    title: "Reforma de Sofás | SR Decorações",
-    description:
-      "Reforma e restauração profissional de sofás. Troca de tecido, espuma e estrutura. Orçamento grátis!",
-    type: "website",
-    locale: "pt_BR",
-  },
-}
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Reforma de Sofás",
-  provider: {
-    "@type": "LocalBusiness",
-    name: "SR Decorações",
-    telephone: "+5511924240055",
-    email: "srdecoracoess@gmail.com",
-    areaServed: "São Paulo",
-  },
-  description:
-    "Reforma e restauração profissional de sofás com troca de tecido, espuma e estrutura.",
-  areaServed: {
-    "@type": "City",
-    name: "São Paulo",
-  },
-}
+  serviceType: "Reforma de Sofás",
+});
 
 const benefits = [
   "Reforma completa com troca de tecido, espuma e estrutura",
@@ -52,7 +34,7 @@ const benefits = [
   "Orçamento detalhado e transparente antes de iniciar",
   "Retirada e entrega do sofá no seu endereço",
   "Garantia de qualidade no serviço e nos materiais",
-]
+];
 
 const details = [
   {
@@ -79,7 +61,7 @@ const details = [
     title: "Orçamento Presencial",
     text: "Visitamos seu espaço para avaliar o estado do sofá, apresentar opções de tecido e fornecer um orçamento detalhado e transparente.",
   },
-]
+];
 
 export default function ReformaSofasPage() {
   return (
@@ -94,5 +76,5 @@ export default function ReformaSofasPage() {
       whatsappMessage="Olá! Gostaria de solicitar um orçamento para reforma de sofá."
       jsonLd={jsonLd}
     />
-  )
+  );
 }

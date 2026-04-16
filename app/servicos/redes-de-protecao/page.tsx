@@ -1,49 +1,29 @@
-import type { Metadata } from "next"
-import { ServicePageLayout } from "@/components/service-page-layout"
+import type { Metadata } from "next";
+import { ServicePageLayout } from "@/components/service-page-layout";
+import { getServiceMetadata, serviceSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Instalação de Redes de Proteção em São Paulo | SR Decorações",
+export const metadata: Metadata = getServiceMetadata("redes-de-protecao");
+
+const jsonLd = serviceSchema("redes-de-protecao", {
+  title: "Redes de Proteção | SR Decorações",
   description:
-    "Instalação profissional de redes de proteção para janelas, sacadas e varandas. Segurança para crianças, idosos e pets. Orçamento grátis via WhatsApp. Atendemos toda Grande São Paulo.",
+    "Instalação de redes de proteção em São Paulo para maior segurança. Proteção infantil e de animais de estimação. Qualidade garantida!",
+  shortDescription:
+    "Redes de proteção para janelas e varandas. Segurança para crianças e animais de estimação.",
   keywords: [
     "redes de proteção",
-    "rede de proteção são paulo",
-    "instalação de rede de proteção",
-    "rede para janela",
-    "rede para sacada",
-    "rede para varanda",
-    "rede de proteção para crianças",
-    "rede de proteção para pets",
-    "rede de proteção sp",
-    "tela de proteção",
+    "redes de proteção infantil",
+    "proteção de janelas",
+    "proteção de varandas",
+    "redes de proteção são paulo",
+    "segurança infantil",
+    "proteção de animais",
+    "instalação de redes",
+    "redes de qualidade",
+    "proteção para pets",
   ],
-  openGraph: {
-    title: "Instalação de Redes de Proteção | SR Decorações",
-    description:
-      "Instalação profissional de redes de proteção para janelas, sacadas e varandas. Segurança para sua família. Orçamento grátis!",
-    type: "website",
-    locale: "pt_BR",
-  },
-}
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Instalação de Redes de Proteção",
-  provider: {
-    "@type": "LocalBusiness",
-    name: "SR Decorações",
-    telephone: "+5511924240055",
-    email: "srdecoracoess@gmail.com",
-    areaServed: "São Paulo",
-  },
-  description:
-    "Instalação profissional de redes de proteção para janelas, sacadas, varandas e áreas de risco. Segurança para crianças, idosos e pets.",
-  areaServed: {
-    "@type": "City",
-    name: "São Paulo",
-  },
-}
+  serviceType: "Redes de Proteção",
+});
 
 const benefits = [
   "Redes de proteção de alta resistência com material de qualidade",
@@ -54,7 +34,7 @@ const benefits = [
   "Instalação rápida e limpa, sem danificar a estrutura",
   "Atendemos apartamentos, casas e áreas comerciais",
   "Garantia de fábrica no material e na instalação",
-]
+];
 
 const details = [
   {
@@ -81,7 +61,7 @@ const details = [
     title: "Visita Técnica e Orçamento",
     text: "Realizamos visita técnica gratuita para avaliar o local, tirar medidas e apresentar a melhor solução de proteção para seu espaço.",
   },
-]
+];
 
 export default function RedesProtecaoPage() {
   return (
@@ -96,5 +76,5 @@ export default function RedesProtecaoPage() {
       whatsappMessage="Olá! Gostaria de solicitar um orçamento para instalação de redes de proteção."
       jsonLd={jsonLd}
     />
-  )
+  );
 }
