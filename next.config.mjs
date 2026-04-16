@@ -18,14 +18,16 @@ const cspDev = `
   img-src 'self' data:
     https://www.google-analytics.com
     https://www.googletagmanager.com
-    https://www.google.com;
+    https://www.google.com
+    https://fonts.gstatic.com;
 
   frame-src
     https://www.googletagmanager.com
     https://tagassistant.google.com;
 
   style-src 'self' 'unsafe-inline'
-    https://fonts.googleapis.com;
+    https://fonts.googleapis.com
+    https://www.googletagmanager.com;
 
   font-src 'self'
     https://fonts.gstatic.com;
@@ -47,7 +49,8 @@ const cspProd = `
   img-src 'self' data:
     https://www.google-analytics.com
     https://www.googletagmanager.com
-    https://www.google.com;
+    https://www.google.com
+    https://fonts.gstatic.com;
 
   frame-src
     https://www.googletagmanager.com;
