@@ -12,10 +12,13 @@ export function HeroSection() {
           fill
           className="object-cover opacity-30"
           priority
+          fetchPriority="high"
+          sizes="100vw"
+          quality={60}
         />
       </div>
       <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 py-20 text-center lg:px-8 lg:py-32">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-emerald-300">
           <Star className="h-4 w-4" />
           Mais de 10 anos de experiência
         </div>

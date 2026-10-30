@@ -19,6 +19,19 @@ export function middleware(req: NextRequest) {
   return response;
 }
 
+// Evita executar o middleware em assets estáticos e prefetches
+export const config = {
+  matcher: [
+    {
+      source: "/((?!api|_next/static|_next/image|images|favicon.ico|robots.txt|sitemap.xml).*)",
+      missing: [
+        { type: "header", key: "next-router-prefetch" },
+        { type: "header", key: "purpose", value: "prefetch" },
+      ],
+    },
+  ],
+};
+
 function getDevCSP() {
   return `
     default-src 'self';
@@ -28,6 +41,8 @@ function getDevCSP() {
       https://www.google-analytics.com
       https://tagassistant.google.com
       https://static.cloudflareinsights.com
+      https://www.googleadservices.com
+      https://www.google.com
       https://googleads.g.doubleclick.net;
 
     connect-src 'self'
@@ -37,14 +52,21 @@ function getDevCSP() {
       https://www.google.com
       https://www.google.com.br
       https://www.googleadservices.com
-      https://googleads.g.doubleclick.net;
+      https://googleads.g.doubleclick.net
+      https://ad.doubleclick.net
+      https://stats.g.doubleclick.net
+      https://*.google-analytics.com
+      https://*.analytics.google.com;
 
     img-src 'self' data:
       https://www.google-analytics.com
       https://www.googletagmanager.com
       https://www.google.com
+      https://www.google.com.br
       https://fonts.gstatic.com
-      https://googleads.g.doubleclick.net;
+      https://googleads.g.doubleclick.net
+      https://ad.doubleclick.net
+      https://stats.g.doubleclick.net;
 
     frame-src
       https://www.googletagmanager.com
@@ -67,6 +89,8 @@ function getProdCSP() {
       https://www.googletagmanager.com
       https://www.google-analytics.com
       https://static.cloudflareinsights.com
+      https://www.googleadservices.com
+      https://www.google.com
       https://googleads.g.doubleclick.net;
 
     connect-src 'self'
@@ -75,14 +99,21 @@ function getProdCSP() {
       https://www.google.com
       https://www.google.com.br
       https://www.googleadservices.com
-      https://googleads.g.doubleclick.net;
+      https://googleads.g.doubleclick.net
+      https://ad.doubleclick.net
+      https://stats.g.doubleclick.net
+      https://*.google-analytics.com
+      https://*.analytics.google.com;
 
     img-src 'self' data:
       https://www.google-analytics.com
       https://www.googletagmanager.com
       https://www.google.com
+      https://www.google.com.br
       https://fonts.gstatic.com
-      https://googleads.g.doubleclick.net;
+      https://googleads.g.doubleclick.net
+      https://ad.doubleclick.net
+      https://stats.g.doubleclick.net;
 
     frame-src
       https://www.googletagmanager.com;

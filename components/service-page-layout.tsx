@@ -49,6 +49,9 @@ export function ServicePageLayout({
               fill
               className="object-cover opacity-25"
               priority
+              fetchPriority="high"
+              sizes="100vw"
+              quality={60}
             />
           </div>
           <div className="relative mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-24">
@@ -60,7 +63,7 @@ export function ServicePageLayout({
               Voltar para Início
             </Link>
             <div className="max-w-3xl">
-              <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-widest text-primary">
+              <span className="mb-3 inline-block text-sm font-semibold uppercase tracking-widest text-emerald-300">
                 {subtitle}
               </span>
               <h1 className="mb-6 font-serif text-3xl font-bold leading-tight text-primary-foreground md:text-4xl lg:text-5xl">

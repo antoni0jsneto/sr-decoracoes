@@ -30,7 +30,7 @@ export function WhatsAppButton({
         rel="noopener noreferrer"
         id={id || "whatsapp-float"}
         data-conversion="whatsapp-float"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-3.5 font-semibold text-[#fff] shadow-lg transition-transform hover:scale-105 hover:shadow-xl"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-[#0f7a4a] px-5 py-3.5 font-semibold text-[#fff] shadow-lg transition-transform hover:scale-105 hover:shadow-xl"
         aria-label="Conversar no WhatsApp"
       >
         <MessageCircle className="h-6 w-6 fill-current" />
@@ -47,7 +47,7 @@ export function WhatsAppButton({
         rel="noopener noreferrer"
         id={id || "whatsapp-cta"}
         data-conversion="whatsapp-cta"
-        className={`inline-flex items-center gap-2 rounded-lg bg-[#25D366] px-8 py-4 text-lg font-bold text-[#fff] shadow-md transition-all hover:scale-105 hover:bg-[#20bd5a] hover:shadow-lg ${className}`}
+        className={`inline-flex items-center gap-2 rounded-lg bg-[#0f7a4a] px-8 py-4 text-lg font-bold text-[#fff] shadow-md transition-all hover:scale-105 hover:bg-[#0b6a41] hover:shadow-lg ${className}`}
       >
         <MessageCircle className="h-5 w-5 fill-current" />
         {label}

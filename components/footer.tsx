@@ -11,10 +11,10 @@ export function Footer() {
             <div className="mb-4 flex items-center gap-3">
               <div className="h-14 w-14 rounded-full bg-white shadow-md flex items-center justify-center overflow-hidden">
                 <Image
-                  src="/images/logo.svg"
+                  src="/images/logo-128.webp"
                   alt="SR Decorações"
-                  width={40}
-                  height={40}
+                  width={56}
+                  height={56}
                   className="h-full w-full object-contain rounded-full"
                 />
               </div>
