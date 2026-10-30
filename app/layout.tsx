@@ -96,12 +96,6 @@ export default function RootLayout({
 
   return (
     <html lang="pt-BR">
-      <head>
-        {/* Icons */}
-        <link rel="icon" href="/images/logo.ico" />
-        <link rel="apple-touch-icon" href="/images/logo-128.webp" />
-      </head>
-
       <body
         className={`${inter.variable} ${playfair.variable} font-sans antialiased`}
       >
