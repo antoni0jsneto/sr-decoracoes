@@ -5,6 +5,8 @@ const nextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
+    // Next 16 só aceita as qualidades listadas aqui (padrão: [75]); as demais são ignoradas
+    qualities: [40, 60, 70, 75],
     minimumCacheTTL: 60 * 60 * 24 * 31,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },

@@ -13,8 +13,8 @@ export function HeroSection() {
           className="object-cover opacity-30"
           priority
           fetchPriority="high"
-          sizes="100vw"
-          quality={60}
+          sizes="(max-width: 768px) 640px, 100vw"
+          quality={40}
         />
       </div>
       <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 py-20 text-center lg:px-8 lg:py-32">
