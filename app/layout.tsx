@@ -4,6 +4,8 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 
 import "./globals.css";
+import { ClickTracker } from "@/components/analytics/click-tracker";
+import { PHONE_E164, SITE_URL } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
@@ -12,7 +14,7 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
-const siteUrl = "https://srdecoracoess.com";
+const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -81,7 +83,7 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     name: "SR Decorações",
     url: siteUrl,
-    telephone: "+55 11 99999-9999",
+    telephone: PHONE_E164,
     address: {
       "@type": "PostalAddress",
       addressLocality: "São Paulo",
@@ -112,18 +114,22 @@ export default function RootLayout({
 
         {children}
 
+        <ClickTracker />
+
         {/* Schema.org */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
 
-        {/* Google Tag Manager: carregado após o load para não competir com o LCP */}
+        {/* Google Tag Manager: carregado após o load para não competir com o LCP.
+            Só no domínio oficial (ou com ?gtm_debug, para o Tag Assistant), para
+            que localhost e prévias da Vercel não enviem dados ao GA4/Google Ads. */}
         <Script
           id="gtm-base"
           strategy="lazyOnload"
           dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            __html: `(function(w,d,s,l,i){if(w.location.hostname!=='${new URL(SITE_URL).hostname}'&&!/[?&]gtm_debug=/.test(w.location.search))return;w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);

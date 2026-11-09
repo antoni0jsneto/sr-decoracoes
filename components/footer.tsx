@@ -135,6 +135,12 @@ export function Footer() {
             &copy; {new Date().getFullYear()} SR Decorações. Todos os direitos
             reservados.
           </p>
+          <Link
+            href="/politica-de-privacidade"
+            className="mt-2 inline-block underline-offset-4 hover:text-primary-foreground hover:underline"
+          >
+            Política de privacidade
+          </Link>
         </div>
       </div>
     </footer>

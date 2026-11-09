@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { SITE_URL } from "@/lib/site";
 
 interface BreadcrumbItem {
   label: string;
@@ -41,13 +42,13 @@ export function BreadcrumbSchema({ items }: { items: BreadcrumbItem[] }) {
       "@type": "ListItem",
       position: 1,
       name: "Início",
-      item: "https://srdecoracoess.com/",
+      item: `${SITE_URL}/`,
     },
     ...items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 2,
       name: item.label,
-      item: item.href ? `https://srdecoracoess.com${item.href}` : undefined,
+      item: item.href ? `${SITE_URL}${item.href}` : undefined,
     })),
   ];
 

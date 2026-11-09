@@ -1,8 +1,7 @@
 "use client"
 
 import { MessageCircle } from "lucide-react"
-
-const WHATSAPP_NUMBER = "5511924240055"
+import { WHATSAPP_NUMBER } from "@/lib/site"
 const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`
 
 interface WhatsAppButtonProps {

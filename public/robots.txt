@@ -1,5 +1,5 @@
 # Robots.txt para SR Decorações
-# https://srdecoracoess.com
+# https://www.srdecoracoes.com.br
 
 # Permite acesso de todos os crawlers
 User-agent: *
@@ -26,5 +26,4 @@ Allow: /servicos/
 Crawl-delay: 2
 
 # Sitemap
-Sitemap: https://srdecoracoess.com/sitemap.xml
-Sitemap: https://srdecoracoess.com/sitemap-services.xml
+Sitemap: https://www.srdecoracoes.com.br/sitemap.xml

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
-const siteUrl = "https://srdecoracoess.com";
+import { SITE_URL } from "@/lib/site";
+
+const siteUrl = SITE_URL;
 
 export interface ServiceMetadata {
   title: string;

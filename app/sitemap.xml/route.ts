@@ -1,7 +1,8 @@
 import { getAllServices } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site";
 
 export async function GET() {
-  const baseUrl = "https://srdecoracoess.com";
+  const baseUrl = SITE_URL;
   const services = getAllServices();
 
   const serviceUrls = services
