@@ -5,6 +5,7 @@ import { Header } from "./header"
 import { Footer } from "./footer"
 import { WhatsAppButton } from "./whatsapp-button"
 import { CtaSection } from "./cta-section"
+import { TrackView } from "./analytics/track-view"
 
 interface ServicePageLayoutProps {
   title: string
@@ -38,6 +39,7 @@ export function ServicePageLayout({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <TrackView event="service_view" />
       <Header />
       <main>
         {/* Hero */}
@@ -77,6 +79,7 @@ export function ServicePageLayout({
                 label="Solicitar Orçamento Grátis"
                 message={whatsappMessage}
                 id={`service-hero-whatsapp-${title.toLowerCase().replace(/\s/g, "-")}`}
+                location="hero_servico"
               />
             </div>
           </div>
@@ -158,6 +161,7 @@ export function ServicePageLayout({
               label="Chamar no WhatsApp"
               message={whatsappMessage}
               id={`service-mid-whatsapp-${title.toLowerCase().replace(/\s/g, "-")}`}
+              location="meio_pagina"
             />
           </div>
         </section>
@@ -165,7 +169,7 @@ export function ServicePageLayout({
         <CtaSection />
       </main>
       <Footer />
-      <WhatsAppButton variant="fixed" />
+      <WhatsAppButton variant="fixed" location="flutuante" />
     </>
   )
 }

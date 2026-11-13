@@ -41,9 +41,12 @@ export function HeroSection() {
             label="Solicite Orçamento Grátis"
             message="Olá! Gostaria de solicitar um orçamento para os serviços da SR Decorações."
             id="hero-whatsapp-cta"
+            location="hero"
           />
           <a
             href="#servicos"
+            data-cta-id="hero-ver-servicos"
+            data-button-location="hero"
             className="inline-flex items-center gap-2 rounded-lg border border-primary-foreground/30 px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary-foreground/10"
           >
             Conheça Nossos Serviços

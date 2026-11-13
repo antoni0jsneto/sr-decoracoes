@@ -1,7 +1,8 @@
 "use client";
 
 import type { MouseEvent, ReactNode } from "react";
-import { getAttribution, getLeadRef, pushEvent } from "@/lib/analytics";
+import { pushEvent, type ContactIntent } from "@/lib/analytics";
+import { getLeadRef, recordLeadAttribution } from "@/lib/attribution";
 import { PHONE_E164, whatsappUrl } from "@/lib/site";
 
 /** Contexto da landing enviado em todos os eventos da página. */
@@ -9,15 +10,6 @@ export interface LpContext {
   slug: string;
   serviceId: string;
   refPrefix: string;
-}
-
-export function lpEventBase(context: LpContext) {
-  return {
-    page_type: "landing",
-    lp_slug: context.slug,
-    service_id: context.serviceId,
-    ...getAttribution(),
-  };
 }
 
 /** Mensagem final do WhatsApp com o código de referência do atendimento. */
@@ -47,17 +39,19 @@ export function LpWhatsAppLink({
   className,
   children,
   ariaLabel,
-}: LinkProps & { message: string }) {
+  intent = "orcamento",
+}: LinkProps & { message: string; intent?: ContactIntent }) {
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
+    // O código do atendimento vai na mensagem e no registro próprio de
+    // atribuição (só com Marketing concedido). Não vai para o GA4.
     const ref = getLeadRef(context.refPrefix);
     event.currentTarget.href = whatsappUrl(messageWithRef(message, ref));
     pushEvent("whatsapp_click", {
-      ...lpEventBase(context),
-      cta_id: ctaId,
-      cta_position: position,
-      lead_ref: ref,
-      link_text: (event.currentTarget.textContent || "").trim().slice(0, 100),
+      button_location: position,
+      button_id: ctaId,
+      contact_intent: intent,
     });
+    recordLeadAttribution(ref, context.serviceId);
   }
 
   return (
@@ -93,9 +87,8 @@ export function LpPhoneLink({
       aria-label={ariaLabel}
       onClick={() =>
         pushEvent("phone_click", {
-          ...lpEventBase(context),
-          cta_id: ctaId,
-          cta_position: position,
+          button_location: position,
+          button_id: ctaId,
         })
       }
     >

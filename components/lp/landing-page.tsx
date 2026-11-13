@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Check, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { TrackView } from "@/components/analytics/track-view";
+import { CookiePreferencesButton } from "@/components/consent/cookie-preferences-button";
+import { CONSENT_ENABLED } from "@/lib/consent";
 import { SERVICE_AREA, type LandingPage } from "@/lib/landing-pages";
 import { BUSINESS_HOURS, CONTACT_EMAIL, PHONE_DISPLAY } from "@/lib/site";
 import { LpIcon } from "./lp-icon";
@@ -54,6 +57,7 @@ export function LandingPageView({ page }: { page: LandingPage }) {
 
   return (
     <>
+      <TrackView event="landing_page_view" />
       {/* Cabeçalho enxuto: marca, telefone e WhatsApp */}
       <header className="sticky top-0 z-40 border-b border-border/70 bg-card/95 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2.5 lg:px-8">
@@ -194,6 +198,7 @@ export function LandingPageView({ page }: { page: LandingPage }) {
                 context={context}
                 message={page.whatsappMessage}
                 ctaId="lp_problems_whatsapp"
+                intent="envio_foto"
                 position="lp_after_problems"
                 className={`${WA_BUTTON} shrink-0 px-6 py-3.5 text-base`}
               >
@@ -451,7 +456,12 @@ export function LandingPageView({ page }: { page: LandingPage }) {
               <Phone aria-hidden="true" className="h-4 w-4" />
               {PHONE_DISPLAY}
             </LpPhoneLink>
-            <a href={`mailto:${CONTACT_EMAIL}`} className="inline-flex items-center gap-2 hover:text-white">
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              data-button-id="lp_footer_email"
+              data-button-location="lp_footer"
+              className="inline-flex items-center gap-2 hover:text-white"
+            >
               <Mail aria-hidden="true" className="h-4 w-4" />
               {CONTACT_EMAIL}
             </a>
@@ -467,6 +477,14 @@ export function LandingPageView({ page }: { page: LandingPage }) {
             <Link href="/politica-de-privacidade" className="hover:text-white">
               Política de privacidade
             </Link>
+            {CONSENT_ENABLED && (
+              <>
+                <Link href="/politica-de-cookies" className="hover:text-white">
+                  Política de cookies
+                </Link>
+                <CookiePreferencesButton className="text-left hover:text-white" />
+              </>
+            )}
           </nav>
         </div>
         <p className="mx-auto mt-10 max-w-6xl border-t border-white/10 px-4 pt-6 text-xs text-white/50 lg:px-8">
@@ -475,7 +493,7 @@ export function LandingPageView({ page }: { page: LandingPage }) {
       </footer>
 
       <LpStickyCta context={context} message={page.whatsappMessage} label="Pedir orçamento" />
-      <LpSectionTracker context={context} />
+      <LpSectionTracker />
     </>
   );
 }

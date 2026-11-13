@@ -1,10 +1,16 @@
 import React from "react";
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
-import Script from "next/script";
 
 import "./globals.css";
 import { ClickTracker } from "@/components/analytics/click-tracker";
+import {
+  GoogleTagManagerHead,
+  GoogleTagManagerLegacy,
+  GoogleTagManagerNoscript,
+} from "@/components/analytics/google-tag-manager";
+import { ConsentManager } from "@/components/consent/consent-manager";
+import { CONSENT_ENABLED } from "@/lib/consent";
 import { PHONE_E164, SITE_URL } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -99,22 +105,19 @@ export default function RootLayout({
 
   return (
     <html lang="pt-BR">
+      <head>
+        <GoogleTagManagerHead />
+      </head>
       <body
         className={`${inter.variable} ${playfair.variable} font-sans antialiased`}
       >
-        {/* GTM (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-5KMVZ4R8"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
+        {/* GTM (noscript): só no modo legado; com consentimento nada carrega sem JS. */}
+        <GoogleTagManagerNoscript />
 
         {children}
 
         <ClickTracker />
+        {CONSENT_ENABLED && <ConsentManager />}
 
         {/* Schema.org */}
         <script
@@ -122,20 +125,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
 
-        {/* Google Tag Manager: carregado após o load para não competir com o LCP.
-            Só no domínio oficial (ou com ?gtm_debug, para o Tag Assistant), para
-            que localhost e prévias da Vercel não enviem dados ao GA4/Google Ads. */}
-        <Script
-          id="gtm-base"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){if(w.location.hostname!=='${new URL(SITE_URL).hostname}'&&!/[?&]gtm_debug=/.test(w.location.search))return;w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5KMVZ4R8');`,
-          }}
-        />
+        {/* GTM. Com o consentimento ligado, o carregamento é feito pelo script do
+            <head> (lib/gtm-bootstrap.ts), só após a escolha do visitante. Com ele
+            desligado (padrão), vale o comportamento legado. */}
+        <GoogleTagManagerLegacy />
       </body>
     </html>
   );

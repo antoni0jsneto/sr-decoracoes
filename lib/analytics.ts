@@ -2,157 +2,163 @@
  * Camada de mensuração do site (dataLayer do GTM-5KMVZ4R8).
  *
  * Regras:
- * - Um clique = um evento. Cliques no WhatsApp são INTENÇÃO de contato, não lead.
- * - Nenhum dado pessoal vai para o dataLayer (sem nome, telefone, e-mail ou texto livre).
- * - Cada push zera os parâmetros que não usa, porque o modelo de dados do GTM
- *   guarda valores entre eventos.
- * - Quem envia (ou não) os dados para GA4/Google Ads é o GTM, respeitando a
- *   configuração de consentimento do contêiner.
+ * - Um clique = um evento. Clique no WhatsApp é INTENÇÃO de contato, não lead.
+ *   `generate_lead` NÃO é emitido pelo site: só existe quando a SR registra uma
+ *   solicitação realmente recebida (ver docs/tracking/eventos.md).
+ * - Nenhum dado pessoal vai para o dataLayer (nome, telefone, e-mail, texto livre).
+ * - GCLID/GBRAID/WBRAID, UTMs e `lead_ref` NUNCA viajam como parâmetro de evento
+ *   (GA4 ou Clarity): ficam no registro próprio de atribuição (lib/attribution.ts).
+ * - Com o consentimento ligado, nada é enviado sem ao menos uma categoria
+ *   concedida; quem decide o que cada tag recebe é o GTM (flags sr_consent_*).
+ * - Cada push zera os parâmetros que não usa (o modelo de dados do GTM guarda
+ *   valores entre eventos).
+ * - `page_view` NÃO é enviado daqui: é a medição otimizada do GA4 (histórico do
+ *   navegador), para não haver duplicidade entre rotas do App Router.
  */
 
-export type AnalyticsEvent =
-  | "whatsapp_click"
-  | "phone_click"
-  | "form_start"
-  | "form_submit"
-  | "faq_open"
-  | "section_view";
+import {
+  CONSENT_CHANGED_EVENT,
+  CONSENT_ENABLED,
+  hasAnyConsent,
+  readConsent,
+} from "./consent.ts";
+import {
+  trackingContextFromPath,
+  trafficTypeFromSearch,
+  type TrackingContext,
+} from "./tracking-taxonomy.ts";
 
-export type PageType = "landing" | "home" | "service" | "privacy" | "other";
+export const ANALYTICS_EVENTS = [
+  "whatsapp_click",
+  "phone_click",
+  "email_click",
+  "cta_click",
+  "service_card_click",
+  "service_view",
+  "landing_page_view",
+  "form_start",
+  "form_error",
+  "faq_interaction",
+  "section_view",
+] as const;
 
-const EVENT_PARAMS = [
-  "page_type",
-  "lp_slug",
-  "service_id",
-  "cta_id",
-  "cta_position",
-  "link_text",
+export type AnalyticsEvent = (typeof ANALYTICS_EVENTS)[number];
+
+export const EVENT_PARAMS = [
+  "service_name",
+  "service_category",
+  "landing_page_type",
+  "button_location",
+  "button_id",
+  "contact_intent",
   "form_id",
-  "item_type",
-  "quantity_range",
-  "lead_ref",
+  "error_fields",
   "section_id",
   "faq_question",
-  "utm_source",
-  "utm_medium",
-  "utm_campaign",
-  "utm_term",
-  "utm_content",
-  "gclid",
-  "gbraid",
-  "wbraid",
+  "item_type",
+  "quantity_range",
+  "traffic_type",
 ] as const;
 
-export type EventParams = Partial<
-  Record<(typeof EVENT_PARAMS)[number], string | undefined>
->;
+export type EventParam = (typeof EVENT_PARAMS)[number];
+export type EventParams = Partial<Record<EventParam, string | undefined>>;
 
-type DataLayerWindow = Window & { dataLayer?: Record<string, unknown>[] };
+export type ContactIntent = "orcamento" | "envio_foto" | "contato_geral";
 
-export function pushEvent(event: AnalyticsEvent, params: EventParams = {}) {
-  if (typeof window === "undefined") return;
-  const w = window as DataLayerWindow;
-  w.dataLayer = w.dataLayer || [];
+/** Eventos espelhados no Clarity (só o nome, sem parâmetros). */
+const CLARITY_EVENTS: readonly AnalyticsEvent[] = [
+  "whatsapp_click",
+  "service_view",
+  "landing_page_view",
+  "form_start",
+  "form_error",
+  "cta_click",
+];
+
+function contextParams(context: TrackingContext): EventParams {
+  return {
+    landing_page_type: context.landing_page_type,
+    service_name: context.service_name,
+    service_category: context.service_category,
+  };
+}
+
+/**
+ * Monta o payload do dataLayer. Função pura (testável): parâmetros fora da
+ * lista são descartados e vazios viram `undefined` para limpar o modelo do GTM.
+ */
+export function buildPayload(
+  event: AnalyticsEvent,
+  pathname: string,
+  params: EventParams = {},
+): Record<string, unknown> {
+  const merged: EventParams = { ...contextParams(trackingContextFromPath(pathname)) };
+  for (const key of EVENT_PARAMS) {
+    const value = params[key];
+    if (value !== undefined && value !== "") merged[key] = value;
+  }
   const payload: Record<string, unknown> = { event };
-  for (const key of EVENT_PARAMS) payload[key] = undefined;
-  for (const [key, value] of Object.entries(params)) {
-    if (value !== undefined && value !== "") payload[key] = value;
-  }
-  w.dataLayer.push(payload);
+  for (const key of EVENT_PARAMS) payload[key] = merged[key] || undefined;
+  return payload;
 }
 
-/* ------------------------------------------------------------------ */
-/* Atribuição: UTM e identificadores de clique do Google Ads           */
-/* ------------------------------------------------------------------ */
+function consentAllowsEvents(): boolean {
+  if (!CONSENT_ENABLED) return true;
+  return hasAnyConsent(readConsent());
+}
 
-const ATTRIBUTION_KEYS = [
-  "utm_source",
-  "utm_medium",
-  "utm_campaign",
-  "utm_term",
-  "utm_content",
-  "gclid",
-  "gbraid",
-  "wbraid",
-] as const;
-
-type Attribution = Partial<Record<(typeof ATTRIBUTION_KEYS)[number], string>>;
-
-const ATTRIBUTION_STORAGE = "sr_attr_v1";
-const REF_STORAGE = "sr_ref_v1";
-
-function safeSession(): Storage | null {
+function mirrorToClarity(event: AnalyticsEvent) {
+  if (!CONSENT_ENABLED || !CLARITY_EVENTS.includes(event)) return;
+  if (!readConsent()?.analytics) return;
   try {
-    return window.sessionStorage;
+    window.clarity?.("event", event);
   } catch {
-    return null;
+    /* o Clarity nunca pode quebrar o site */
   }
+}
+
+/** Envia um evento ao dataLayer. Devolve `false` quando o consentimento não permite. */
+export function pushEvent(event: AnalyticsEvent, params: EventParams = {}): boolean {
+  if (typeof window === "undefined") return false;
+  if (!consentAllowsEvents()) return false;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(buildPayload(event, window.location.pathname, params));
+  mirrorToClarity(event);
+  return true;
 }
 
 /**
- * Guarda na sessão (aba) os parâmetros de campanha da URL de entrada, para
- * que continuem disponíveis se o visitante navegar antes de clicar no
- * WhatsApp. Uma nova entrada com parâmetros substitui a anterior.
- * Fica só no navegador (sessionStorage), sem cookie e sem envio próprio.
+ * Para eventos de visualização (carregamento da página): se o consentimento
+ * ainda não existe, tenta de novo quando o visitante decidir, uma única vez.
  */
-export function captureAttribution(): void {
-  if (typeof window === "undefined") return;
-  const params = new URLSearchParams(window.location.search);
-  const found: Attribution = {};
-  for (const key of ATTRIBUTION_KEYS) {
-    const value = params.get(key);
-    if (value) found[key] = value.slice(0, 100);
-  }
-  if (Object.keys(found).length === 0) return;
-  safeSession()?.setItem(ATTRIBUTION_STORAGE, JSON.stringify(found));
+export function pushEventWhenAllowed(event: AnalyticsEvent, params: EventParams = {}): () => void {
+  if (pushEvent(event, params)) return () => {};
+  const retry = () => {
+    window.removeEventListener(CONSENT_CHANGED_EVENT, retry);
+    pushEvent(event, params);
+  };
+  window.addEventListener(CONSENT_CHANGED_EVENT, retry);
+  return () => window.removeEventListener(CONSENT_CHANGED_EVENT, retry);
 }
 
-export function getAttribution(): Attribution {
-  if (typeof window === "undefined") return {};
-  try {
-    const raw = safeSession()?.getItem(ATTRIBUTION_STORAGE);
-    return raw ? (JSON.parse(raw) as Attribution) : {};
-  } catch {
-    return {};
-  }
-}
-
-/* ------------------------------------------------------------------ */
-/* Código de referência do atendimento                                 */
-/* ------------------------------------------------------------------ */
-
-const REF_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"; // sem 0/O, 1/I/L
-
-function randomCode(length = 5): string {
-  const bytes = new Uint8Array(length);
-  if (typeof crypto !== "undefined" && crypto.getRandomValues) {
-    crypto.getRandomValues(bytes);
-  } else {
-    for (let i = 0; i < length; i++) bytes[i] = Math.floor(Math.random() * 256);
-  }
-  return Array.from(bytes, (b) => REF_ALPHABET[b % REF_ALPHABET.length]).join("");
+export function currentTrafficType() {
+  return trafficTypeFromSearch(window.location.search);
 }
 
 /**
- * Código curto (ex.: LAV-7K2MQ) incluído na mensagem do WhatsApp e no evento
- * `whatsapp_click`. Permite à SR registrar o contato na planilha comercial e,
- * depois, cruzar com a campanha (GA4) para importar conversões offline.
- * O mesmo código vale para toda a sessão do visitante.
+ * Navega na mesma aba só depois de o GTM processar os eventos já empilhados
+ * (ou após 1 s), para não perder um clique que abandona a página. Sem
+ * consentimento não há o que esperar.
  */
-export function getLeadRef(prefix: string): string {
-  const storage = typeof window !== "undefined" ? safeSession() : null;
-  let code = storage?.getItem(REF_STORAGE) ?? null;
-  if (!code) {
-    code = randomCode();
-    storage?.setItem(REF_STORAGE, code);
-  }
-  return `${prefix}-${code}`;
-}
-
-export function pageTypeFromPath(pathname: string): PageType {
-  if (pathname === "/") return "home";
-  if (pathname.startsWith("/lp/")) return "landing";
-  if (pathname.startsWith("/servicos/")) return "service";
-  if (pathname.startsWith("/politica-de-privacidade")) return "privacy";
-  return "other";
+export function navigateAfterEvents(url: string): void {
+  let done = false;
+  const go = () => {
+    if (done) return;
+    done = true;
+    window.location.href = url;
+  };
+  if (CONSENT_ENABLED && !hasAnyConsent(readConsent())) return go();
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: "sr_navigate", eventCallback: go, eventTimeout: 1000 });
+  window.setTimeout(go, 1000);
 }

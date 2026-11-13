@@ -4,6 +4,9 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { whatsappUrl } from "@/lib/site";
+
+const QUOTE_URL = whatsappUrl("Olá! Gostaria de solicitar um orçamento.");
 
 interface SubItem {
   label: string;
@@ -131,11 +134,13 @@ export function Header() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <a
-            href="https://wa.me/5511924240055?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento."
+            href={QUOTE_URL}
             target="_blank"
             rel="noopener noreferrer"
             id="header-whatsapp-cta"
-            data-conversion="header-whatsapp"
+            data-button-id="header-whatsapp-cta"
+            data-button-location="header"
+            data-contact-intent="orcamento"
             className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
           >
             <Phone className="h-4 w-4" />
@@ -206,11 +211,13 @@ export function Header() {
               ),
             )}
             <a
-              href="https://wa.me/5511924240055?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento."
+              href={QUOTE_URL}
               target="_blank"
               rel="noopener noreferrer"
               id="mobile-header-whatsapp"
-              data-conversion="header-whatsapp-mobile"
+              data-button-id="mobile-header-whatsapp"
+              data-button-location="header_mobile"
+              data-contact-intent="orcamento"
               className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"
             >
               <Phone className="h-4 w-4" />

@@ -64,6 +64,7 @@ export function HowItWorks() {
             label="Quero Meu Orçamento Grátis"
             message="Olá! Vi o site e gostaria de solicitar um orçamento."
             id="how-it-works-whatsapp"
+            location="como_funciona"
           />
         </div>
       </div>
