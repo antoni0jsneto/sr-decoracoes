@@ -76,6 +76,16 @@ IDs da SR (públicos no HTML do site): GTM `GTM-5KMVZ4R8` · GA4 `G-95DJKRLNGJ` 
 
 **Reversão (a ordem importa):** passo 4 → desligar a flag e redeploy (ou *Instant Rollback* da Vercel). Passo 3 → restaurar a versão anterior do GTM **somente com a flag desligada**. Nunca deixar a flag ligada com o GTM v5/anterior.
 
+## 6.1 Registro de publicação
+
+| Data | Passo | Situação |
+|---|---|---|
+| 13/11/2026 | 1. Site com flag desligada (merge `4b58dba`) | feito e verificado na URL oficial (modo legado) |
+| 13/11/2026 | 2. GTM **versão 6** publicada (Default Workspace: 5 tags modificadas, 25 itens novos, 0 excluídos) | feito; confirmado no `gtm.js` público (versão 6, tags AW, G-, conversão, Clarity sem `userId`/`sessionId`, GA4 - Eventos) |
+| — | 3. Ligar `NEXT_PUBLIC_CONSENT_ENABLED=true` em Production e validar os 4 cenários na URL oficial | **pendente**, depende de autorização |
+
+Reversão do GTM (versão 5 anterior): *Versões → v5 → Ações → Publicar*; só com a flag desligada. Espaço `consentimento-lgpd` (id 7) com 55 exclusões: não publicar.
+
 ## 7. Pendências externas
 
 - Plataformas: publicar GTM; ajustes do GA4 Admin; confirmar vínculo GA4↔Ads; Clarity (mascaramento, “exigir consentimento”, filtros).
