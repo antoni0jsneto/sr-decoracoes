@@ -3,14 +3,13 @@
 import type { SyntheticEvent } from "react";
 import { ChevronDown } from "lucide-react";
 import { pushEvent } from "@/lib/analytics";
-import { lpEventBase, type LpContext } from "./lp-links";
+import type { LpContext } from "./lp-links";
 
 /** FAQ com <details> nativo (acessível e sem JS para abrir/fechar). */
 export function LpFaq({
-  context,
   items,
 }: {
-  context: LpContext;
+  context?: LpContext;
   items: { question: string; answer: string }[];
 }) {
   function handleToggle(
@@ -18,9 +17,9 @@ export function LpFaq({
     question: string,
   ) {
     if (!event.currentTarget.open) return;
-    pushEvent("faq_open", {
-      ...lpEventBase(context),
+    pushEvent("faq_interaction", {
       faq_question: question.slice(0, 100),
+      button_location: "faq",
     });
   }
 

@@ -43,7 +43,9 @@ function getDevCSP() {
       https://static.cloudflareinsights.com
       https://www.googleadservices.com
       https://www.google.com
-      https://googleads.g.doubleclick.net;
+      https://googleads.g.doubleclick.net
+      https://www.clarity.ms
+      https://*.clarity.ms;
 
     connect-src 'self'
       https://www.google-analytics.com
@@ -56,7 +58,9 @@ function getDevCSP() {
       https://ad.doubleclick.net
       https://stats.g.doubleclick.net
       https://*.google-analytics.com
-      https://*.analytics.google.com;
+      https://*.analytics.google.com
+      https://*.clarity.ms
+      https://c.bing.com;
 
     img-src 'self' data:
       https://www.google-analytics.com
@@ -66,7 +70,9 @@ function getDevCSP() {
       https://fonts.gstatic.com
       https://googleads.g.doubleclick.net
       https://ad.doubleclick.net
-      https://stats.g.doubleclick.net;
+      https://stats.g.doubleclick.net
+      https://*.clarity.ms
+      https://c.bing.com;
 
     frame-src
       https://www.googletagmanager.com
@@ -91,7 +97,9 @@ function getProdCSP() {
       https://static.cloudflareinsights.com
       https://www.googleadservices.com
       https://www.google.com
-      https://googleads.g.doubleclick.net;
+      https://googleads.g.doubleclick.net
+      https://www.clarity.ms
+      https://*.clarity.ms;
 
     connect-src 'self'
       https://www.google-analytics.com
@@ -103,7 +111,9 @@ function getProdCSP() {
       https://ad.doubleclick.net
       https://stats.g.doubleclick.net
       https://*.google-analytics.com
-      https://*.analytics.google.com;
+      https://*.analytics.google.com
+      https://*.clarity.ms
+      https://c.bing.com;
 
     img-src 'self' data:
       https://www.google-analytics.com
@@ -113,7 +123,9 @@ function getProdCSP() {
       https://fonts.gstatic.com
       https://googleads.g.doubleclick.net
       https://ad.doubleclick.net
-      https://stats.g.doubleclick.net;
+      https://stats.g.doubleclick.net
+      https://*.clarity.ms
+      https://c.bing.com;
 
     frame-src
       https://www.googletagmanager.com;

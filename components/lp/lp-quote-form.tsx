@@ -2,10 +2,11 @@
 
 import { useId, useRef, useState, type FormEvent } from "react";
 import { Send } from "lucide-react";
-import { getLeadRef, pushEvent } from "@/lib/analytics";
+import { navigateAfterEvents, pushEvent } from "@/lib/analytics";
+import { getLeadRef, recordLeadAttribution } from "@/lib/attribution";
 import { QUANTITY_OPTIONS } from "@/lib/landing-pages";
 import { whatsappUrl } from "@/lib/site";
-import { lpEventBase, messageWithRef, type LpContext } from "./lp-links";
+import { messageWithRef, type LpContext } from "./lp-links";
 
 interface Props {
   context: LpContext;
@@ -19,8 +20,8 @@ type Errors = Partial<Record<"item" | "quantity" | "location", string>>;
 
 /**
  * Formulário curto que monta a mensagem do WhatsApp. Não há envio a servidor:
- * por isso gera `form_submit` (envio válido) e `whatsapp_click`, nunca
- * `generate_lead` (o lead só existe quando a conversa chega à SR).
+ * o envio válido gera apenas `whatsapp_click` (intenção), nunca `form_submit`
+ * nem `generate_lead` (o lead só existe quando a conversa chega à SR).
  * O bairro/cidade digitado vai só na mensagem, nunca para o dataLayer.
  */
 export function LpQuoteForm({
@@ -38,7 +39,7 @@ export function LpQuoteForm({
   function handleStart() {
     if (started.current) return;
     started.current = true;
-    pushEvent("form_start", { ...lpEventBase(context), form_id: formId });
+    pushEvent("form_start", { form_id: formId });
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -54,6 +55,8 @@ export function LpQuoteForm({
     if (location.length < 3) next.location = "Informe o bairro e a cidade.";
     setErrors(next);
     if (Object.keys(next).length > 0) {
+      // Só os nomes dos campos com erro, nunca os valores digitados.
+      pushEvent("form_error", { form_id: formId, error_fields: Object.keys(next).join(",") });
       const first = event.currentTarget.querySelector<HTMLElement>(
         `[name="${Object.keys(next)[0]}"]`,
       );
@@ -66,26 +69,23 @@ export function LpQuoteForm({
       `${baseMessage}\n• ${itemLabel}: ${item}\n• Quantidade: ${quantity}\n• Bairro/cidade: ${location.slice(0, 80)}`,
       ref,
     );
-    const shared = {
-      ...lpEventBase(context),
+    pushEvent("whatsapp_click", {
+      button_location: "lp_formulario",
+      button_id: "lp_form_submit",
+      contact_intent: "orcamento",
       form_id: formId,
       item_type: item,
       quantity_range: quantity,
-      lead_ref: ref,
-    };
-    pushEvent("form_submit", shared);
-    pushEvent("whatsapp_click", {
-      ...shared,
-      cta_id: "lp_form_submit",
-      cta_position: "lp_form",
     });
+    recordLeadAttribution(ref, context.serviceId);
 
     const url = whatsappUrl(message);
     const opened = window.open(url, "_blank");
     if (opened) {
       opened.opener = null;
     } else {
-      window.location.href = url;
+      // Popup bloqueado: navega na mesma aba só depois de o GTM processar o evento.
+      navigateAfterEvents(url);
     }
   }
 

@@ -1,6 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { CookiePreferencesButton } from "@/components/consent/cookie-preferences-button";
+import { CONSENT_ENABLED } from "@/lib/consent";
+import { CONTACT_EMAIL, PHONE_DISPLAY, whatsappUrl } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -94,20 +97,26 @@ export function Footer() {
             </h3>
             <div className="flex flex-col gap-3">
               <a
-                href="https://wa.me/5511924240055"
+                href={whatsappUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
+                id="footer-whatsapp"
+                data-button-id="footer-whatsapp"
+                data-button-location="rodape"
+                data-contact-intent="contato_geral"
                 className="flex items-center gap-2 text-sm text-primary-foreground/70 transition-colors hover:text-primary"
               >
                 <Phone className="h-4 w-4" />
-                (11) 92424-0055
+                {PHONE_DISPLAY}
               </a>
               <a
-                href="mailto:srdecoracoess@gmail.com"
+                href={`mailto:${CONTACT_EMAIL}`}
+                data-button-id="footer-email"
+                data-button-location="rodape"
                 className="flex items-center gap-2 text-sm text-primary-foreground/70 transition-colors hover:text-primary"
               >
                 <Mail className="h-4 w-4" />
-                srdecoracoess@gmail.com
+                {CONTACT_EMAIL}
               </a>
               <div className="flex items-start gap-2 text-sm text-primary-foreground/70">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
@@ -141,6 +150,19 @@ export function Footer() {
           >
             Política de privacidade
           </Link>
+          {CONSENT_ENABLED && (
+            <>
+              <span aria-hidden="true" className="mx-2">·</span>
+              <Link
+                href="/politica-de-cookies"
+                className="inline-block underline-offset-4 hover:text-primary-foreground hover:underline"
+              >
+                Política de cookies
+              </Link>
+              <span aria-hidden="true" className="mx-2">·</span>
+              <CookiePreferencesButton className="inline-block underline underline-offset-4 hover:text-primary-foreground" />
+            </>
+          )}
         </div>
       </div>
     </footer>

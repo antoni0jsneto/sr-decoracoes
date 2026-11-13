@@ -23,7 +23,7 @@ export default function Home() {
         <CtaSection />
       </main>
       <Footer />
-      <WhatsAppButton variant="fixed" />
+      <WhatsAppButton variant="fixed" location="flutuante" />
     </>
   )
 }

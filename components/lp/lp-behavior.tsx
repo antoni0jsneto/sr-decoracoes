@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import { MessageCircle, Phone } from "lucide-react";
 import { pushEvent } from "@/lib/analytics";
-import { LpPhoneLink, LpWhatsAppLink, lpEventBase, type LpContext } from "./lp-links";
+import { LpPhoneLink, LpWhatsAppLink, type LpContext } from "./lp-links";
 
 /**
  * `section_view`: uma vez por seção (`data-section-id`), quando ela ocupa o
  * centro da tela por 1 segundo.
  */
-export function LpSectionTracker({ context }: { context: LpContext }) {
+export function LpSectionTracker() {
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return;
     const seen = new Set<string>();
@@ -26,7 +26,7 @@ export function LpSectionTracker({ context }: { context: LpContext }) {
               setTimeout(() => {
                 seen.add(id);
                 observer.unobserve(entry.target);
-                pushEvent("section_view", { ...lpEventBase(context), section_id: id });
+                pushEvent("section_view", { section_id: id });
               }, 1000),
             );
           } else {
@@ -48,7 +48,7 @@ export function LpSectionTracker({ context }: { context: LpContext }) {
       observer.disconnect();
       timers.forEach((t) => clearTimeout(t));
     };
-  }, [context]);
+  }, []);
 
   return null;
 }

@@ -9,6 +9,7 @@ const services = [
       "Higienização profissional que elimina ácaros, bactérias e mau cheiro. Suas persianas e cortinas novas de novo!",
     image: "/images/lavagem-persianas.jpg",
     href: "/servicos/persianas/lavagem",
+    serviceName: "lavagem-persianas-cortinas",
     highlight: true,
   },
   {
@@ -17,6 +18,7 @@ const services = [
       "Conserto, troca de peças e ajustes. Não troque suas persianas, conserte com quem entende do assunto.",
     image: "/images/manutencao-persianas.jpg",
     href: "/servicos/persianas/manutencao",
+    serviceName: "manutencao-persianas-cortinas",
     highlight: true,
   },
   {
@@ -25,6 +27,7 @@ const services = [
       "Diversos modelos de persianas e cortinas para residências e empresas. Medição e instalação inclusa.",
     image: "/images/venda-persianas.jpg",
     href: "/servicos/persianas/venda",
+    serviceName: "venda-persianas-cortinas",
     highlight: false,
   },
   {
@@ -33,6 +36,7 @@ const services = [
       "Limpeza profunda e higienização completa do seu sofá. Removemos manchas, ácaros e mau cheiro.",
     image: "/images/lavagem-sofas.jpg",
     href: "/servicos/lavagem-sofas",
+    serviceName: "lavagem-sofas",
     highlight: false,
   },
   {
@@ -41,6 +45,7 @@ const services = [
       "Reforma completa do seu sofá com tecidos de alta qualidade. Renovamos o estofado e deixamos como novo.",
     image: "/images/reforma-sofas.jpg",
     href: "/servicos/reforma-sofas",
+    serviceName: "reforma-sofas",
     highlight: false,
   },
   {
@@ -49,6 +54,7 @@ const services = [
       "Instalação profissional de carpetes e paviflex para residências e empresas. Acabamento perfeito e duradouro.",
     image: "/images/instalacao-pisos.jpg",
     href: "/servicos/instalacao-pisos",
+    serviceName: "instalacao-pisos",
     highlight: false,
   },
   {
@@ -57,6 +63,7 @@ const services = [
       "Instalação de redes de proteção para janelas, sacadas e varandas. Segurança para sua família e seus pets.",
     image: "/images/redes-protecao.jpg",
     href: "/servicos/redes-de-protecao",
+    serviceName: "redes-protecao",
     highlight: false,
   },
 ];
@@ -86,6 +93,9 @@ export function ServicesSection() {
             <Link
               key={service.href}
               href={service.href}
+              data-service-card={service.serviceName}
+              data-button-id={`service-card-${service.serviceName}`}
+              data-button-location="servicos"
               className={`group relative flex flex-col overflow-hidden rounded-2xl border transition-all hover:-translate-y-1 hover:shadow-xl ${
                 service.highlight
                   ? "border-primary/30 bg-card ring-1 ring-primary/10"

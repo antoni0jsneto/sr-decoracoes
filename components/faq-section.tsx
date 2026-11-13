@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { pushEvent } from "@/lib/analytics"
 
 const faqs = [
   {
@@ -53,7 +54,20 @@ export function FaqSection() {
           </h2>
         </div>
 
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion
+          type="single"
+          collapsible
+          className="w-full"
+          onValueChange={(value) => {
+            const index = Number(value.replace("faq-", ""))
+            if (value && faqs[index]) {
+              pushEvent("faq_interaction", {
+                faq_question: faqs[index].question.slice(0, 100),
+                button_location: "faq",
+              })
+            }
+          }}
+        >
           {faqs.map((faq, index) => (
             <AccordionItem key={`faq-${index}`} value={`faq-${index}`}>
               <AccordionTrigger className="text-left text-base font-semibold text-foreground">

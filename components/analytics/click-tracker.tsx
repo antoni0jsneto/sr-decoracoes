@@ -1,12 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import {
-  captureAttribution,
-  getAttribution,
-  pageTypeFromPath,
-  pushEvent,
-} from "@/lib/analytics";
+import { captureAttribution } from "@/lib/attribution";
+import { CONSENT_CHANGED_EVENT } from "@/lib/consent";
+import { pushEvent, type ContactIntent } from "@/lib/analytics";
 
 function isWhatsAppHref(href: string): boolean {
   return /(^https?:\/\/)?(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com)\//i.test(
@@ -15,14 +12,20 @@ function isWhatsAppHref(href: string): boolean {
 }
 
 /**
- * Rastreamento global (todas as páginas): um `whatsapp_click` por clique em
- * link do WhatsApp e um `phone_click` por clique em link `tel:`.
- * Links que já enviam o próprio evento (landing pages) usam
- * `data-track="manual"` e são ignorados aqui, evitando duplicidade.
+ * Único ouvinte global de cliques (todas as páginas). Um clique = um evento:
+ * - link do WhatsApp → `whatsapp_click` (`data-button-location`, `data-button-id`,
+ *   `data-contact-intent`);
+ * - `tel:` → `phone_click`; `mailto:` → `email_click`;
+ * - `[data-service-card]` → `service_card_click`;
+ * - `[data-cta-id]` (link interno relevante) → `cta_click`.
+ * Links que enviam o próprio evento (landing pages, que precisam inserir o
+ * código de atendimento na mensagem) usam `data-track="manual"` e são ignorados.
  */
 export function ClickTracker() {
   useEffect(() => {
     captureAttribution();
+    // Marketing concedido depois da entrada: guarda a atribuição da URL atual.
+    window.addEventListener(CONSENT_CHANGED_EVENT, captureAttribution);
 
     function onClick(event: MouseEvent) {
       const target = event.target as Element | null;
@@ -30,23 +33,43 @@ export function ClickTracker() {
       if (!link || link.dataset.track === "manual") return;
 
       const href = link.getAttribute("href") || "";
-      const base = {
-        page_type: pageTypeFromPath(window.location.pathname),
-        cta_id: link.id || link.dataset.conversion || undefined,
-        link_text: (link.textContent || "").trim().slice(0, 100) || undefined,
-        ...getAttribution(),
-      };
+      const buttonId = link.dataset.buttonId || link.id || undefined;
 
       if (isWhatsAppHref(href)) {
-        pushEvent("whatsapp_click", base);
+        pushEvent("whatsapp_click", {
+          button_location: link.dataset.buttonLocation || "nao_identificado",
+          button_id: buttonId,
+          contact_intent: (link.dataset.contactIntent as ContactIntent) || "orcamento",
+        });
       } else if (href.startsWith("tel:")) {
-        pushEvent("phone_click", base);
+        pushEvent("phone_click", {
+          button_location: link.dataset.buttonLocation || "nao_identificado",
+          button_id: buttonId,
+        });
+      } else if (href.startsWith("mailto:")) {
+        pushEvent("email_click", {
+          button_location: link.dataset.buttonLocation || "nao_identificado",
+          button_id: buttonId,
+        });
+      } else if (link.dataset.serviceCard) {
+        pushEvent("service_card_click", {
+          service_name: link.dataset.serviceCard,
+          button_location: link.dataset.buttonLocation || "servicos",
+          button_id: buttonId,
+        });
+      } else if (link.dataset.ctaId) {
+        pushEvent("cta_click", {
+          button_location: link.dataset.buttonLocation || "nao_identificado",
+          button_id: link.dataset.ctaId,
+        });
       }
     }
 
     document.addEventListener("click", onClick, { capture: true });
-    return () =>
+    return () => {
       document.removeEventListener("click", onClick, { capture: true });
+      window.removeEventListener(CONSENT_CHANGED_EVENT, captureAttribution);
+    };
   }, []);
 
   return null;

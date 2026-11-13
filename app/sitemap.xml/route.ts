@@ -29,6 +29,16 @@ export async function GET() {
     <priority>1.0</priority>
   </url>
   ${serviceUrls}
+  <url>
+    <loc>${baseUrl}/politica-de-privacidade</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/politica-de-cookies</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
 </urlset>`;
 
   return new Response(sitemap, {
