@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { CookiePreferencesButton } from "@/components/consent/cookie-preferences-button";
 import { LegalSection, LegalShell, Pending } from "@/components/legal-shell";
 import {
@@ -8,6 +9,7 @@ import {
   itemsByCategory,
   type InventoryCategory,
 } from "@/lib/cookie-inventory";
+import { CONSENT_ENABLED } from "@/lib/consent";
 import { CONTACT_EMAIL, PHONE_DISPLAY, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -54,6 +56,9 @@ function InventoryTable({ category }: { category: InventoryCategory }) {
 }
 
 export default function CookiePolicyPage() {
+  // A política descreve o banner e o consentimento: só existe com a flag ligada.
+  if (!CONSENT_ENABLED) notFound();
+
   return (
     <LegalShell title="Política de Cookies" updatedAt={UPDATED_AT}>
       <p className="mt-6 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">

@@ -47,7 +47,7 @@ IDs da SR (públicos no HTML do site): GTM `GTM-5KMVZ4R8` · GA4 `G-95DJKRLNGJ` 
 
 ## 5. Flag e matriz de compatibilidade
 
-`NEXT_PUBLIC_CONSENT_ENABLED` (padrão desligado; lida no build). Desligada, o site se comporta como o de produção (sem banner, GTM como hoje); só mudam nomes de eventos e parâmetros.
+`NEXT_PUBLIC_CONSENT_ENABLED` (padrão desligado; lida no build). Desligada, o site se comporta como o de produção (sem banner, GTM como hoje); só mudam nomes de eventos e parâmetros. Também com a flag desligada: `/politica-de-cookies` responde 404 e fora do sitemap, e `/politica-de-privacidade` mostra o texto de 09/11/2026 (o novo descreve banner e Clarity e tem pendências jurídicas; só aparece com a flag ligada).
 
 | Site \ Contêiner | v5 (atual) | Novo (`gtm-import-sr.json` + edições) |
 |---|---|---|

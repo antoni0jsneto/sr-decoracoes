@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalSection, LegalShell, Pending } from "@/components/legal-shell";
+import { CONSENT_ENABLED } from "@/lib/consent";
 import { CONTACT_EMAIL, PHONE_DISPLAY, SITE_URL } from "@/lib/site";
+import { LEGACY_SECTIONS, LEGACY_UPDATED_AT } from "./legacy-sections";
 
 export const metadata: Metadata = {
   title: "Política de Privacidade | SR Decorações",
@@ -13,6 +15,21 @@ export const metadata: Metadata = {
 const UPDATED_AT = "13 de novembro de 2026";
 
 export default function PrivacyPolicyPage() {
+  // Sem o consentimento ligado, segue o texto já publicado (sem pendências jurídicas à mostra).
+  if (!CONSENT_ENABLED) {
+    return (
+      <LegalShell title="Política de Privacidade" updatedAt={LEGACY_UPDATED_AT}>
+        {LEGACY_SECTIONS.map((section) => (
+          <LegalSection key={section.title} title={section.title}>
+            {section.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </LegalSection>
+        ))}
+      </LegalShell>
+    );
+  }
+
   return (
     <LegalShell title="Política de Privacidade" updatedAt={UPDATED_AT}>
       <p className="mt-6 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
