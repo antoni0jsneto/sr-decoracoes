@@ -59,7 +59,7 @@ IDs da SR (públicos no HTML do site): GTM `GTM-5KMVZ4R8` · GA4 `G-95DJKRLNGJ` 
 
 1. **Site com flag desligada** (merge + deploy). Validar em produção: nada visível muda, 1 `whatsapp_click` por clique. Risco: nenhum além dos novos nomes de parâmetro (o GA4 nunca recebeu os antigos).
 2. **GTM em novo espaço de trabalho** (sem publicar):
-   a. Importar `gtm-import-sr.json` (*Admin → Importar contêiner → Mesclar → renomear conflitantes*): cria 18 variáveis, 6 gatilhos e a tag “SR - GA4 - Eventos do site”.
+   a. Importar `gtm-import-sr.json` (*Admin → Importar contêiner*). **A opção padrão da tela é “Substituir” e apaga as tags existentes do espaço: escolha “Combinar” → “Renomear conflitantes” e confira “0 excluídas” no resumo**: cria 18 variáveis, 6 gatilhos e a tag “SR - GA4 - Eventos do site”.
    b. Editar as tags **existentes** (nomes aparecem no seu espaço):
 
    | Tag existente | Trocar o(s) acionador(es) por |

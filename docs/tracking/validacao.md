@@ -17,7 +17,8 @@ Data: 13/11/2026. Ambiente: `next start` local (build de produção), Chrome (De
 | `page_view` no App Router | 1 por rota, sem duplicar (carga, link, voltar, avançar) |
 | Modo legado (flag desligada) | sem banner, sem flags, 1 `whatsapp_click` por clique |
 | LCP/CLS mobile (LP, flag ligada) | LCP 368 ms (elemento: parágrafo do hero, **não** o banner), CLS 0 |
-| Tag Assistant, DebugView, Clarity | **não validados** |
+| Preview do contêiner novo, modo legado | aprovado (ver seção própria) |
+| Preview com a flag ligada, DebugView, Clarity | **não validados** |
 
 ## Cenários de consentimento (site)
 
@@ -59,7 +60,23 @@ Com o GA4 atual (medição otimizada) e a v5: carga inicial 1 `page_view`; link 
 
 Em **dois cenários iniciais** (aceite “só analíticos” e “só marketing”) o harness de bloqueio ainda não estava ativo no documento (ele só vale para a navegação em que é injetado, não para recarregamentos feitos por JavaScript). Esses testes carregaram o contêiner real a partir de `localhost:3100`, então **alguns hits de teste podem ter chegado de fato ao GA4 `G-95DJKRLNGJ` (`page_location` = localhost), ao Google Ads e ao Clarity `zd51ucsjgx`**. Depois disso todos os cenários foram refeitos com bloqueio e verificação. Sugestões: filtrar tráfego de `localhost` no GA4 e ignorar essas sessões no Clarity.
 
-## Roteiro de validação no GTM (pendente)
+## Preview do contêiner novo, modo legado (feito em 13/11/2026)
+
+Rascunho no **Default Workspace** do GTM (importação em *Combinar + renomear*, 25 itens novos e 0 excluídos; 6 tags com gatilhos de consentimento), aberto no Tag Assistant contra `https://www.srdecoracoes.com.br/` (site **atual**, sem consentimento). Nada foi publicado.
+
+| Momento | Tags disparadas | Não disparadas |
+|---|---|---|
+| Carga da página | Vinculador, Tag do Google AW, GA4 - Configuração, Microsoft Clarity | TechSol - Whatsapp, SR - GA4 - Eventos do site |
+| `whatsapp_click` (2 eventos registrados; o usuário confirmou que **todos** os botões clicados dispararam as duas tags) | **TechSol - Whatsapp (1× por clique)** e SR - GA4 - Eventos do site | demais |
+| `gtm.linkClick` (conferido no 1º clique) | nenhuma | todas |
+
+Conclusão: no modo legado o contêiner novo se comporta como a v5 na carga, a conversão dispara 1× por `whatsapp_click` e os gatilhos antigos (texto “WhatsApp” e URL `924240055`) já não disparam nada. A cobertura por botão foi confirmada pelo usuário, sem captura da lista de cliques por botão. Clarity: a tag perdeu `Custom Id` (era o ID de cliente do GA4) e, por dependência do template, também o `Session Id`.
+
+## Roteiro de validação no GTM (restante, pendente)
+
+Já feito: o item 1 abaixo (modo legado). Falta o modo novo (item 2 em diante).
+
+
 
 Pré-requisito: espaço de trabalho com o JSON importado e as tags editadas (README §6, passo 2).
 
