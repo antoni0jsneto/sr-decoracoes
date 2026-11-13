@@ -13,12 +13,13 @@ Data: 13/11/2026. Ambiente: `next start` local (build de produção), Chrome (De
 | `pnpm lint` | arquivos alterados sem erro; restam 5 erros anteriores em `components/ui/*` e `hooks/use-mobile.tsx` (regras novas do React) |
 | `pnpm build` | aprovado com a flag desligada e ligada |
 | Cenários de consentimento (site) | 1º acesso, rejeitar, só analíticos, só marketing, aceitar todos, alterar, revogar, recarregar: aprovados |
-| Isolamento por categoria **no contêiner** | **não validado** (depende do contêiner novo no Preview) |
+| Isolamento por categoria **no contêiner** | **validado no Preview** (ver seção própria) |
 | `page_view` no App Router | 1 por rota, sem duplicar (carga, link, voltar, avançar) |
 | Modo legado (flag desligada) | sem banner, sem flags, 1 `whatsapp_click` por clique |
 | LCP/CLS mobile (LP, flag ligada) | LCP 368 ms (elemento: parágrafo do hero, **não** o banner), CLS 0 |
 | Preview do contêiner novo, modo legado | aprovado (ver seção própria) |
-| Preview com a flag ligada, DebugView, Clarity | **não validados** |
+| Preview com a flag ligada (prévia Vercel), 4 cenários | aprovado: isolamento por categoria (tags e cliques) |
+| DebugView, Clarity (mascaramento), revogação no Preview | **não validados** |
 
 ## Cenários de consentimento (site)
 
@@ -71,6 +72,25 @@ Rascunho no **Default Workspace** do GTM (importação em *Combinar + renomear*,
 | `gtm.linkClick` (conferido no 1º clique) | nenhuma | todas |
 
 Conclusão: no modo legado o contêiner novo se comporta como a v5 na carga, a conversão dispara 1× por `whatsapp_click` e os gatilhos antigos (texto “WhatsApp” e URL `924240055`) já não disparam nada. A cobertura por botão foi confirmada pelo usuário, sem captura da lista de cliques por botão. Clarity: a tag perdeu `Custom Id` (era o ID de cliente do GA4) e, por dependência do template, também o `Session Id`.
+
+## Preview do contêiner novo com a flag ligada (prévia da Vercel, 13/11/2026)
+
+Site: prévia da branch na Vercel com `NEXT_PUBLIC_CONSENT_ENABLED=true` (só no ambiente Preview), contêiner: rascunho do Default Workspace, ambos no Tag Assistant. O site não tinha nenhum cookie nem requisição antes da escolha (conferido no navegador). **Resultados do Tag Assistant relatados pelo usuário** (não consegui ler a janela por aqui). Cada linha de clique = 1 clique em botão de WhatsApp.
+
+| Cenário | Tags disparadas na carga | `whatsapp_click`: TechSol - Whatsapp (conversão) | `whatsapp_click`: SR - GA4 - Eventos do site |
+|---|---|---|---|
+| 1. Rejeitar | nenhuma (o GTM nem carrega) | — | — |
+| 2. Só analíticos | GA4 - Configuração, Clarity | **não disparou** ✔ | disparou ✔ |
+| 3. Só marketing | Tag do Google AW, Vinculador | disparou ✔ | **não disparou** ✔ |
+| 4. Os dois | AW, GA4 - Configuração, Clarity, Vinculador | disparou (1×) ✔ | disparou ✔ |
+
+Conclusão: com o gate por gatilho, **o isolamento por categoria está provado** nos quatro cenários: só analíticos não aciona Ads nem a conversão; só marketing não aciona GA4 nem Clarity. Para comparação, a v5 publicada, sem gate, mandou pings do Ads com só analíticos e pings do GA4/Clarity com só marketing.
+
+Erro de leitura registrado: a TechSol “não disparou” relatada no início referia-se à carga da página, em que ela nunca aparece; só aparece no clique.
+
+Custo do teste: cerca de 2 conversões reais no Google Ads e alguns eventos reais no GA4 e no Clarity.
+
+Ainda **não** validados: revogação no Preview, `form_start`/`form_error`/`faq_interaction`/`phone_click` no Tag Assistant, DebugView do GA4, mascaramento e leitura do consentimento pelo Clarity, e a rede por domínio (só o resultado das tags, não as requisições).
 
 ## Roteiro de validação no GTM (restante, pendente)
 
