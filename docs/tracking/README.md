@@ -82,7 +82,7 @@ IDs da SR (públicos no HTML do site): GTM `GTM-5KMVZ4R8` · GA4 `G-95DJKRLNGJ` 
 |---|---|---|
 | 13/11/2026 | 1. Site com flag desligada (merge `4b58dba`) | feito e verificado na URL oficial (modo legado) |
 | 13/11/2026 | 2. GTM **versão 6** publicada (Default Workspace: 5 tags modificadas, 25 itens novos, 0 excluídos) | feito; confirmado no `gtm.js` público (versão 6, tags AW, G-, conversão, Clarity sem `userId`/`sessionId`, GA4 - Eventos) |
-| 13/11/2026 | 3. Flag ligada em Production (deploy `87e21a4`) | feito. Primeiro acesso na URL oficial verificado: banner, rodapé "Preferências de cookies", `consent default` negado, sem cookies, GTM não carregado. **Pendente:** os 4 cenários no Tag Assistant na URL oficial |
+| 13/11/2026 | 3. Flag ligada em Production (deploy `87e21a4`) | feito. Primeiro acesso na URL oficial verificado: banner, rodapé "Preferências de cookies", `consent default` negado, sem cookies, GTM não carregado. os 4 cenários no Tag Assistant na URL oficial **aprovados** (ver validacao.md) |
 
 Reversão do GTM (versão 5 anterior): *Versões → v5 → Ações → Publicar*; só com a flag desligada. Espaço `consentimento-lgpd` (id 7) com 55 exclusões: não publicar.
 

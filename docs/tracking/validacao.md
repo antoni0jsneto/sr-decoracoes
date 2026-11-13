@@ -92,6 +92,21 @@ Custo do teste: cerca de 2 conversões reais no Google Ads e alguns eventos reai
 
 Ainda **não** validados: revogação no Preview, `form_start`/`form_error`/`faq_interaction`/`phone_click` no Tag Assistant, DebugView do GA4, mascaramento e leitura do consentimento pelo Clarity, e a rede por domínio (só o resultado das tags, não as requisições).
 
+## Validação na URL oficial, flag ligada, GTM v6 (13/11/2026)
+
+Site `https://www.srdecoracoes.com.br/` com `NEXT_PUBLIC_CONSENT_ENABLED=true` (deploy `87e21a4`) e GTM v6 publicado, no Tag Assistant. Resultados relatados pelo usuário; o primeiro acesso e o carregamento com "só analíticos" salvo também foram conferidos por mim no navegador (telemetria bloqueada).
+
+| Cenário | Carga da página | `whatsapp_click` |
+|---|---|---|
+| 1. Rejeitar | nada; o Tag Assistant **não conecta** (GTM não carrega, como projetado) | — |
+| 2. Só analíticos | GA4 - Configuração, Clarity | só **SR - GA4 - Eventos do site** ✔ (conversão não dispara) |
+| 3. Só marketing | Tag AW, Vinculador | só a **conversão TechSol** ✔ (GA4 e Clarity não) |
+| 4. Os dois | tudo | tudo ✔ |
+
+Nota operacional: com a flag ligada o Tag Assistant só conecta depois de uma escolha salva com ao menos uma categoria; sem escolha, expira em "Conectando…". Para o Preview, aceite primeiro.
+
+Conclusão: **isolamento por categoria validado em produção**. Observado também: o beacon `static.cloudflareinsights.com` carrega antes da escolha (injetado pela Cloudflare; decisão pendente).
+
 ## Roteiro de validação no GTM (restante, pendente)
 
 Já feito: o item 1 abaixo (modo legado). Falta o modo novo (item 2 em diante).
