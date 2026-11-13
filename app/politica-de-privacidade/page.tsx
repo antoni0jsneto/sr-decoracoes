@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalSection, LegalShell, Pending } from "@/components/legal-shell";
 import { CONSENT_ENABLED } from "@/lib/consent";
-import { CONTACT_EMAIL, PHONE_DISPLAY, SITE_URL } from "@/lib/site";
+import { CONTACT_EMAIL, LEGAL_CNPJ, LEGAL_NAME, PHONE_DISPLAY, SITE_URL } from "@/lib/site";
 import { LEGACY_SECTIONS, LEGACY_UPDATED_AT } from "./legacy-sections";
 
 export const metadata: Metadata = {
@@ -39,12 +39,13 @@ export default function PrivacyPolicyPage() {
 
       <LegalSection title="1. Controlador dos dados">
         <p>
-          O controlador é a SR Decorações (SR Persianas &amp; Decorações), que presta serviços de
+          O controlador é <strong className="text-foreground">{LEGAL_NAME}</strong> (CNPJ {LEGAL_CNPJ}),
+          que atua sob o nome SR Decorações (SR Persianas &amp; Decorações) e presta serviços de
           lavagem, manutenção e venda de persianas e cortinas, lavagem e reforma de sofás, instalação
           de pisos e redes de proteção.
         </p>
         <p>
-          Razão social, CNPJ e endereço: <Pending>informar dados da empresa</Pending>
+          Endereço da sede: <Pending>informar o endereço da empresa</Pending>
         </p>
         <p>
           Encarregado pelo tratamento de dados (DPO): <Pending>nome ou canal do encarregado</Pending>

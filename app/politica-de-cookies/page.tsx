@@ -10,7 +10,7 @@ import {
   type InventoryCategory,
 } from "@/lib/cookie-inventory";
 import { CONSENT_ENABLED } from "@/lib/consent";
-import { CONTACT_EMAIL, PHONE_DISPLAY, SITE_URL } from "@/lib/site";
+import { CONTACT_EMAIL, LEGAL_CNPJ, LEGAL_NAME, PHONE_DISPLAY, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Política de Cookies | SR Decorações",
@@ -190,10 +190,10 @@ export default function CookiePolicyPage() {
 
       <LegalSection title="13. Contato">
         <p>
-          SR Decorações: {CONTACT_EMAIL} · {PHONE_DISPLAY}.
+          {LEGAL_NAME} (CNPJ {LEGAL_CNPJ}), que atua como SR Decorações: {CONTACT_EMAIL} · {PHONE_DISPLAY}.
         </p>
         <p>
-          Controlador e encarregado pelo tratamento de dados: <Pending>razão social, CNPJ e nome ou canal do encarregado (DPO)</Pending>
+          Encarregado pelo tratamento de dados (DPO): <Pending>nome ou canal do encarregado</Pending>
         </p>
       </LegalSection>
 
