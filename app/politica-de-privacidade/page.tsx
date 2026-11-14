@@ -45,10 +45,12 @@ export default function PrivacyPolicyPage() {
           de pisos e redes de proteção.
         </p>
         <p>
-          Endereço da sede: <Pending>informar o endereço da empresa</Pending>
+          Endereço: a SR Decorações não tem ponto de atendimento ao público; os serviços são prestados
+          a domicílio. Para assuntos de privacidade, use os canais abaixo.
         </p>
         <p>
-          Encarregado pelo tratamento de dados (DPO): <Pending>nome ou canal do encarregado</Pending>
+          Encarregado pelo tratamento de dados (DPO): Raphael Lima, pelo e-mail {CONTACT_EMAIL} ou
+          pelo telefone {PHONE_DISPLAY}.
         </p>
         <p>
           Canais de contato sobre privacidade: {CONTACT_EMAIL} · {PHONE_DISPLAY}.

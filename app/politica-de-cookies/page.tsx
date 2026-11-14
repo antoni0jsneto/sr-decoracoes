@@ -125,8 +125,7 @@ export default function CookiePolicyPage() {
         <ul className="list-disc space-y-2 pl-5">
           <li>Google Tag Manager, Google Analytics 4 e Google Ads (Google LLC).</li>
           <li>
-            Microsoft Clarity (Microsoft Corporation), somente com o aceite de Analíticos.{" "}
-            <Pending>confirmar em produção que a tag só dispara com esse aceite</Pending>
+            Microsoft Clarity (Microsoft Corporation), somente com o aceite de Analíticos.
           </li>
           <li>WhatsApp (Meta): apenas quando você toca em um botão que abre a conversa.</li>
         </ul>
@@ -193,7 +192,7 @@ export default function CookiePolicyPage() {
           {LEGAL_NAME} (CNPJ {LEGAL_CNPJ}), que atua como SR Decorações: {CONTACT_EMAIL} · {PHONE_DISPLAY}.
         </p>
         <p>
-          Encarregado pelo tratamento de dados (DPO): <Pending>nome ou canal do encarregado</Pending>
+          Encarregado pelo tratamento de dados (DPO): Raphael Lima, pelo mesmo e-mail e telefone acima.
         </p>
       </LegalSection>
 
