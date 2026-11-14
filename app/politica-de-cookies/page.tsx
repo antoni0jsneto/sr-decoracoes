@@ -10,7 +10,7 @@ import {
   type InventoryCategory,
 } from "@/lib/cookie-inventory";
 import { CONSENT_ENABLED } from "@/lib/consent";
-import { CONTACT_EMAIL, PHONE_DISPLAY, SITE_URL } from "@/lib/site";
+import { CONTACT_EMAIL, LEGAL_CNPJ, LEGAL_NAME, PHONE_DISPLAY, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Política de Cookies | SR Decorações",
@@ -125,8 +125,7 @@ export default function CookiePolicyPage() {
         <ul className="list-disc space-y-2 pl-5">
           <li>Google Tag Manager, Google Analytics 4 e Google Ads (Google LLC).</li>
           <li>
-            Microsoft Clarity (Microsoft Corporation), somente com o aceite de Analíticos.{" "}
-            <Pending>confirmar em produção que a tag só dispara com esse aceite</Pending>
+            Microsoft Clarity (Microsoft Corporation), somente com o aceite de Analíticos.
           </li>
           <li>WhatsApp (Meta): apenas quando você toca em um botão que abre a conversa.</li>
         </ul>
@@ -190,10 +189,10 @@ export default function CookiePolicyPage() {
 
       <LegalSection title="13. Contato">
         <p>
-          SR Decorações: {CONTACT_EMAIL} · {PHONE_DISPLAY}.
+          {LEGAL_NAME} (CNPJ {LEGAL_CNPJ}), que atua como SR Decorações: {CONTACT_EMAIL} · {PHONE_DISPLAY}.
         </p>
         <p>
-          Controlador e encarregado pelo tratamento de dados: <Pending>razão social, CNPJ e nome ou canal do encarregado (DPO)</Pending>
+          Encarregado pelo tratamento de dados (DPO): Raphael Lima, pelo mesmo e-mail e telefone acima.
         </p>
       </LegalSection>
 

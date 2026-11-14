@@ -8,6 +8,10 @@ export const SITE_URL = "https://www.srdecoracoes.com.br";
 
 export const SITE_NAME = "SR Decorações";
 
+/** Pessoa jurídica controladora dos dados (informada pelo cliente em 13/11/2026). */
+export const LEGAL_NAME = "RAPHAEL ALVES LIMA DA SILVA ME";
+export const LEGAL_CNPJ = "52.705.074/0001-27";
+
 /** Contêiner do Google Tag Manager da SR (verificado no site em produção). */
 export const GTM_ID = "GTM-5KMVZ4R8";
 
