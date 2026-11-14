@@ -86,6 +86,16 @@ IDs da SR (públicos no HTML do site): GTM `GTM-5KMVZ4R8` · GA4 `G-95DJKRLNGJ` 
 
 Reversão do GTM (versão 5 anterior): *Versões → v5 → Ações → Publicar*; só com a flag desligada. Espaço `consentimento-lgpd` (id 7) com 55 exclusões: não publicar.
 
+### GA4 Admin (propriedade "SR Persianas - GA4", `533353513`, fluxo `G-95DJKRLNGJ`) — 13/11/2026
+
+| Item | Situação |
+|---|---|
+| Medição otimizada | "Interações com formulários" **desligada**; "Alterações de página com base no histórico do navegador" mantida ligada |
+| Dimensões personalizadas (escopo Evento) | **9 criadas**: `service_name`, `service_category`, `landing_page_type`, `button_location`, `button_id`, `contact_intent`, `form_id`, `section_id`, `traffic_type` (sem `lead_ref`) |
+| Evento-chave `whatsapp_click` | **pendente**: o GA4 só permite marcar eventos já recebidos e `whatsapp_click` ainda não aparece em *Admin → Eventos → Eventos recentes*. Quando aparecer, marque a estrela. Os 3 eventos-chave que já existiam (`close_convert_lead`, `purchase`, `qualify_lead`, sem dados) não foram alterados |
+| Filtro de tráfego por host (`localhost`, `vercel.app`) | **não existe no GA4**: os filtros de dados só cobrem IP (tráfego interno) e depuração. Alternativa: excluir pela dimensão "Nome do host" em explorações/segmentos. O site só carrega o GTM no domínio oficial (ou com `?gtm_debug`), então o volume de teste é pequeno |
+| Vínculo GA4 ↔ Ads | não conferido |
+
 Achado após ligar a flag: a URL oficial carrega `static.cloudflareinsights.com` (beacon do Cloudflare Web Analytics, injetado pelo proxy da Cloudflare, não pelo código do site) **antes** de qualquer escolha. Decidir: desligar no painel da Cloudflare ou tratá-lo como necessário/analítico e listá-lo na política de cookies.
 
 ## 7. Pendências externas
