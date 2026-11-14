@@ -92,7 +92,7 @@ Reversão do GTM (versão 5 anterior): *Versões → v5 → Ações → Publicar
 |---|---|
 | Medição otimizada | "Interações com formulários" **desligada**; "Alterações de página com base no histórico do navegador" mantida ligada |
 | Dimensões personalizadas (escopo Evento) | **9 criadas**: `service_name`, `service_category`, `landing_page_type`, `button_location`, `button_id`, `contact_intent`, `form_id`, `section_id`, `traffic_type` (sem `lead_ref`) |
-| Evento-chave `whatsapp_click` | **pendente**: o GA4 só permite marcar eventos já recebidos e `whatsapp_click` ainda não aparece em *Admin → Eventos → Eventos recentes*. Quando aparecer, marque a estrela. Os 3 eventos-chave que já existiam (`close_convert_lead`, `purchase`, `qualify_lead`, sem dados) não foram alterados |
+| Evento-chave `whatsapp_click` | **feito em 14/11/2026**: o evento passou a constar em *Eventos recentes* e foi marcado como principal (conferido após recarregar; só ele foi marcado). Os 3 eventos-chave que já existiam (`close_convert_lead`, `purchase`, `qualify_lead`, sem dados) não foram alterados. **Não importar para o Google Ads**: duplicaria a conversão de WhatsApp |
 | Filtro de tráfego por host (`localhost`, `vercel.app`) | **não existe no GA4**: os filtros de dados só cobrem IP (tráfego interno) e depuração. Alternativa: excluir pela dimensão "Nome do host" em explorações/segmentos. O site só carrega o GTM no domínio oficial (ou com `?gtm_debug`), então o volume de teste é pequeno |
 | Vínculo GA4 ↔ Ads | não conferido |
 
